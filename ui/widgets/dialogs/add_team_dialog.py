@@ -20,12 +20,8 @@ class AddTeamDialog(QDialog):
         self.ok_button.clicked.connect(self.accept)
         self.cancel_button.clicked.connect(self.reject)
 
-        button_layout.addStretch()
         button_layout.addWidget(self.ok_button)
         button_layout.addWidget(self.cancel_button)
 
         layout.addLayout(button_layout)
         self.setLayout(layout)
-
-    def get_team_name(self):
-        return self.team_name_input.text().strip()

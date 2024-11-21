@@ -1,10 +1,12 @@
-from repositories import TeamRepository
+from repositories.team_repository import TeamRepository
 from models.team import Team
+from sqlalchemy.orm import Session
 
 
 class TeamService:
-    def __init__(self, team_repository: TeamRepository):
-        self.team_repository = team_repository
+    def __init__(self, session: Session):
+        self.session = session
+        self.team_repository = TeamRepository(session)
 
     def get_all_teams(self):
         return self.team_repository.get_all_teams()

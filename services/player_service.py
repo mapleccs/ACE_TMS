@@ -1,10 +1,17 @@
 from repositories.player_repository import PlayerRepository
+from repositories.team_player_repository import TeamPlayerRepository
 from models.player import Player
+from models.team_player import TeamPlayer
+from sqlalchemy.orm import Session
+from sqlalchemy.exc import IntegrityError
+from datetime import datetime
 
 
 class PlayerService:
-    def __init__(self, player_repository: PlayerRepository):
-        self.player_repository = player_repository
+    def __init__(self, session: Session):
+        self.session = session
+        self.player_repository = PlayerRepository(session)
+        self.team_player_repository = TeamPlayerRepository(session)
 
     def get_all_players(self):
         return self.player_repository.get_all_players()
