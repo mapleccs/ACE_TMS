@@ -1,7 +1,6 @@
-from sqlalchemy import Column, Integer, String, DateTime
+from sqlalchemy import Column, Integer, String
 from sqlalchemy.orm import relationship
-from . import Base
-import datetime
+from .base import Base
 
 
 class Team(Base):
@@ -9,10 +8,12 @@ class Team(Base):
 
     TeamID = Column(Integer, primary_key=True, autoincrement=True)
     TeamName = Column(String(50), nullable=False, unique=True)
-    TeamStatus = Column(String(20), default='active', nullable=False)
-    CreatedAt = Column(DateTime, default=datetime.datetime.utcnow)
-    UpdatedAt = Column(DateTime, default=datetime.datetime.utcnow, onupdate=datetime.datetime.utcnow)
+    TeamLogo = Column(String(200), nullable=True)  # 队伍Logo的URL
 
+    # 关系
     team_players = relationship('TeamPlayer', back_populates='team')
-    matches_home = relationship('Match', back_populates='home_team', foreign_keys='Match.HomeTeamID')
-    matches_away = relationship('Match', back_populates='away_team', foreign_keys='Match.AwayTeamID')
+    matches_as_home = relationship('Match', back_populates='home_team', foreign_keys='Match.HomeTeamID')
+    matches_as_away = relationship('Match', back_populates='away_team', foreign_keys='Match.AwayTeamID')
+
+    def __repr__(self):
+        return f"<Team(TeamID={self.TeamID}, TeamName='{self.TeamName}')>"
