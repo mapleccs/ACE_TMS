@@ -1,43 +1,54 @@
 ```shell
-├── app.py                   # 应用程序的入口
+├── app.py                   # 应用程序入口
 ├── config.py                # 配置文件
-├── data/
-│   ├── __init__.py
-│   ├── repositories/        # 数据访问层
-│   │   ├── __init__.py
-│   │   ├── team_repository.py
-│   │   ├── player_repository.py
-│   │   └── ...（其他仓库）
-├── models/                  # 模型层
+├── models/                  # 数据模型定义
 │   ├── __init__.py
 │   ├── base.py
-│   ├── team.py
-│   ├── player.py
-│   ├── match.py
 │   ├── hero.py
-│   └── ...（其他模型）
+│   ├── player.py
+│   ├── team.py
+│   ├── match.py
+│   ├── match_pick_ban.py
+│   ├── player_match_stats.py
+│   ├── team_player.py
+├── repositories/	# 数据访问层
+│   ├── __init__.py
+│   ├── hero_repository.py
+│   ├── player_repository.py
+│   ├── team_repository.py
+│   ├── match_repository.py
+│   ├── match_pick_ban_repository.py
+│   ├── player_match_stats_repository.py
+│   ├── team_player_repository.py
 ├── services/                # 业务逻辑层
 │   ├── __init__.py
-│   ├── team_service.py
+│   ├── hero_service.py
 │   ├── player_service.py
-│   └── ...（其他服务）
+│   ├── team_service.py
+│   ├── match_service.py
+│   ├── match_pick_ban_service.py
+│   ├── player_match_stats_service.py
+│   └── team_player_service.py
 ├── ui/                      # 用户界面层
 │   ├── __init__.py
 │   ├── main_window.py
 │   ├── widgets/             # 界面小部件
-│   │   ├── __init__.py
-│   │   ├── team_management.py
-│   │   ├── player_management.py
-│   │   ├── match_management.py
-│   │   └── ...（其他小部件）
+│       ├── __init__.py
+│       ├── team_management.py
+│       ├── player_management.py
+│       ├── match_management.py
+│       └── ...（其他小部件）
 │   ├── QSS/                 # 样式表文件
-│   │   ├── dark_theme.qss
-│   │   └── ...（其他样式表）
+│       ├── dark_theme.qss
+│       └── ...（其他样式表）
 ├── utils/                   # 实用工具层
 │   ├── __init__.py
 │   ├── db_utils.py
-│   ├── logger.py
 │   └── ...（其他工具）
+└── tests/                   # 测试层
+    ├── __init__.py
+    ├── test_team.py
+    └── ...（其他测试模块）
 ```
 
 
