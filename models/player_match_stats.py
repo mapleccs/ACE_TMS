@@ -14,17 +14,17 @@ class PlayerMatchStats(Base):
     Position = Column(String(20), nullable=True)  # 位置，例如 'Top', 'Jungle'
 
     # 统计数据
-    Kills = Column(Integer, default=0) # 击杀
-    Deaths = Column(Integer, default=0) # 死亡
-    Assists = Column(Integer, default=0) # 助攻
+    Kills = Column(Integer, default=0)  # 击杀
+    Deaths = Column(Integer, default=0)  # 死亡
+    Assists = Column(Integer, default=0)  # 助攻
     DamageDealt = Column(Integer, default=0)  # 造成的伤害值
     DamageTaken = Column(Integer, default=0)  # 承受的伤害值
     DamageToTakenRatio = Column(Float, default=0.0)  # 伤害转化比
     VisionScore = Column(Integer, default=0)  # 视野得分
-    GoldEarned = Column(Integer, default=0) # 经济
+    GoldEarned = Column(Integer, default=0)  # 经济
     CS = Column(Integer, default=0)  # 补刀数
-    WardsPlaced = Column(Integer, default=0) # 眼位放置
-    WardsKilled = Column(Integer, default=0) # 眼位摧毁
+    WardsPlaced = Column(Integer, default=0)  # 眼位放置
+    WardsKilled = Column(Integer, default=0)  # 眼位摧毁
 
     # 关系
     match = relationship('Match', back_populates='player_stats')
