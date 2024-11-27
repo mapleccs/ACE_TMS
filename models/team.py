@@ -12,9 +12,10 @@ class Team(Base):
 
     ID = Column(Integer, primary_key=True, autoincrement=True)
     TeamName = Column(String(50), nullable=False, unique=True)
+    TeamAbbreviation = Column(String(50), nullable=False)
     TeamLogo = Column(String(500), nullable=True)
     PlayerID = Column(Integer, ForeignKey('player.ID'), nullable=False)
-    TeamState = Column(Integer, nullable=False, default=0)  # 0: 在役, 1: 注销, 2: 冻结
+    TeamState = Column(Integer, nullable=False, default=0)  # 0: 在役, 1: 正常注销, 2: 注销, 3: 冻结
 
     creator = relationship('Player', back_populates='created_teams')
     members = relationship('TeamPlayer', back_populates='team', cascade="all, delete-orphan")
