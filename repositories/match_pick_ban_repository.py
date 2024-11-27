@@ -1,4 +1,4 @@
-from models.match_pick_ban import MatchPickBan
+from ..models.match_pick_ban import MatchPickBan
 from sqlalchemy.orm import Session
 
 
@@ -14,7 +14,7 @@ class MatchPickBanRepository:
 
     def get_picks_bans_by_match(self, match_id: int):
         """获取比赛的所有选人禁用记录"""
-        return self.session.query(MatchPickBan).filter(MatchPickBan.MatchID == match_id).order_by(
+        return self.session.query(MatchPickBan).filter(match_id == MatchPickBan.MatchID).order_by(
             MatchPickBan.PickBanOrder).all()
 
     def delete_picks_bans_by_match(self, match_id: int):

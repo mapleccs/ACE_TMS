@@ -3,23 +3,18 @@ from sqlalchemy.orm import relationship
 from .base import Base
 import datetime
 
-
 class TeamPlayer(Base):
-    __tablename__ = 'team_players'
+    __tablename__ = 'teamPlayer'
 
     ID = Column(Integer, primary_key=True, autoincrement=True)
-    TeamID = Column(Integer, ForeignKey('teams.TeamID'), nullable=False)
-    PlayerID = Column(Integer, ForeignKey('players.PlayerID'), nullable=False)
-    StartDate = Column(DateTime, default=datetime.datetime.utcnow, nullable=False)
+    TeamID = Column(Integer, ForeignKey('team.ID'), nullable=False)
+    PlayerID = Column(Integer, ForeignKey('player.ID'), nullable=False)
+    JobType = Column(Integer, default=0)  # 0: 队员, 1: 副队长, 2: 队长
+    StartDate = Column(DateTime, default=datetime.datetime.utcnow)
     EndDate = Column(DateTime, nullable=True)
 
-    __table_args__ = (
-        UniqueConstraint('PlayerID', 'StartDate', name='uix_player_startdate'),
-    )
-
-    # 关系
-    team = relationship('Team', back_populates='team_players')
-    player = relationship('Player', back_populates='team_players')
+    team = relationship('Team', back_populates='members')
+    player = relationship('Player', back_populates='team_memberships')
 
     def __repr__(self):
-        return f"<TeamPlayer(TeamID={self.TeamID}, PlayerID={self.PlayerID})>"
+        return f"<TeamPlayer(ID={self.ID}, TeamID={self.TeamID}, PlayerID={self.PlayerID})>"

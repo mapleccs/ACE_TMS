@@ -1,4 +1,4 @@
-from models.match import Match
+from ..models.match import Match
 from sqlalchemy.orm import Session
 
 
@@ -14,7 +14,7 @@ class MatchRepository:
 
     def get_match_by_id(self, match_id: int):
         """根据ID获取比赛"""
-        return self.session.query(Match).filter(Match.MatchID == match_id).first()
+        return self.session.query(Match).filter(match_id == Match.ID).first()
 
     def get_all_matches(self):
         """获取所有比赛"""

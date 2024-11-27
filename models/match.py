@@ -5,22 +5,21 @@ import datetime
 
 
 class Match(Base):
-    __tablename__ = 'matches'
+    __tablename__ = 'match'
 
-    MatchID = Column(Integer, primary_key=True, autoincrement=True)
-    HomeTeamID = Column(Integer, ForeignKey('teams.TeamID'), nullable=False)
-    AwayTeamID = Column(Integer, ForeignKey('teams.TeamID'), nullable=False)
+    ID = Column(Integer, primary_key=True, autoincrement=True)
+    HomeTeamID = Column(Integer, ForeignKey('team.ID'), nullable=False)
+    AwayTeamID = Column(Integer, ForeignKey('team.ID'), nullable=False)
     MatchDate = Column(DateTime, default=datetime.datetime.utcnow)
-    MatchType = Column(String(50), nullable=True)  # 比赛类型，例如 'B01', 'B03', 'BO5'
-    WinnerTeamID = Column(Integer, ForeignKey('teams.TeamID'), nullable=True)
-    Duration = Column(Integer, nullable=True)  # 比赛时长，单位为秒
+    MatchType = Column(String(50), nullable=True)  # 比赛类型
+    WinnerTeamID = Column(Integer, ForeignKey('team.ID'), nullable=True)
+    Duration = Column(Integer, nullable=True)  # 秒
+    SeasonID = Column(Integer, ForeignKey('season.ID'), nullable=False)
 
-    # 关系
+    season = relationship('Season', back_populates='matches')
     home_team = relationship('Team', foreign_keys=[HomeTeamID], back_populates='matches_as_home')
     away_team = relationship('Team', foreign_keys=[AwayTeamID], back_populates='matches_as_away')
     winner_team = relationship('Team', foreign_keys=[WinnerTeamID])
-    picks_bans = relationship('MatchPickBan', back_populates='match', cascade="all, delete-orphan")
-    player_stats = relationship('PlayerMatchStats', back_populates='match')
 
     def __repr__(self):
-        return f"<Match(MatchID={self.MatchID}, HomeTeamID={self.HomeTeamID}, AwayTeamID={self.AwayTeamID})>"
+        return f"<Match(ID={self.ID}, HomeTeamID={self.HomeTeamID}, AwayTeamID={self.AwayTeamID})>"

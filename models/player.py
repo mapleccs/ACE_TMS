@@ -4,16 +4,18 @@ from .base import Base
 
 
 class Player(Base):
-    __tablename__ = 'players'
+    __tablename__ = 'player'
 
-    PlayerID = Column(Integer, primary_key=True, autoincrement=True)
+    ID = Column(Integer, primary_key=True, autoincrement=True)
     PlayerName = Column(String(50), nullable=False, unique=True)
-    InGameName = Column(String(50), nullable=True)  # 游戏内昵称
-    PreferredRoles = Column(String(100), nullable=True)  # 偏好的位置，例如 'Top, Jungle'
+    InGameName = Column(String(50), nullable=True)
+    PreferredRoles = Column(String(100), nullable=True)
 
-    # 关系
-    team_players = relationship('TeamPlayer', back_populates='player')
-    match_stats = relationship('PlayerMatchStats', back_populates='player')
+    created_teams = relationship('Team', back_populates='creator')
+    matches_stats = relationship('PlayerMatchStats', back_populates='player', cascade="all, delete-orphan")
+    picks_bans = relationship('MatchPickBan', back_populates='player')
+    reason_scores = relationship('PlayerReasonScore', back_populates='player', cascade="all, delete-orphan")
+    team_memberships = relationship('TeamPlayer', back_populates='player', cascade="all, delete-orphan")
 
     def __repr__(self):
-        return f"<Player(PlayerID={self.PlayerID}, PlayerName='{self.PlayerName}')>"
+        return f"<Player(ID={self.ID}, PlayerName={self.PlayerName})>"

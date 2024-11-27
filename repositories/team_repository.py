@@ -1,4 +1,4 @@
-from models.team import Team
+from ..models.team import Team
 from sqlalchemy.orm import Session
 
 

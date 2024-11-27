@@ -1,4 +1,4 @@
-from models.player import Player
+from ..models.player import Player
 from sqlalchemy.orm import Session
 
 
@@ -14,11 +14,11 @@ class PlayerRepository:
 
     def get_player_by_id(self, player_id: int):
         """根据ID获取玩家"""
-        return self.session.query(Player).filter(Player.PlayerID == player_id).first()
+        return self.session.query(Player).filter(player_id == Player.ID).first()
 
     def get_player_by_name(self, player_name: str):
         """根据名称获取玩家"""
-        return self.session.query(Player).filter(Player.PlayerName == player_name).first()
+        return self.session.query(Player).filter(player_name == Player.PlayerName).first()
 
     def get_all_players(self):
         """获取所有玩家"""

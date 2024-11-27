@@ -1,4 +1,4 @@
-from sqlalchemy import Column, Integer, String
+from sqlalchemy import Column, Integer, String, ForeignKey
 from sqlalchemy.orm import relationship
 from .base import Base
 from typing import TYPE_CHECKING
@@ -8,16 +8,17 @@ if TYPE_CHECKING:
 
 
 class Team(Base):
-    __tablename__ = 'teams'
+    __tablename__ = 'team'
 
-    TeamID = Column(Integer, primary_key=True, autoincrement=True)
+    ID = Column(Integer, primary_key=True, autoincrement=True)
     TeamName = Column(String(50), nullable=False, unique=True)
-    TeamLogo = Column(String(200), nullable=True)  # 队伍Logo的URL
+    TeamLogo = Column(String(500), nullable=True)
+    PlayerID = Column(Integer, ForeignKey('player.ID'), nullable=False)
+    TeamState = Column(Integer, nullable=False, default=0)  # 0: 在役, 1: 注销, 2: 冻结
 
-    # 关系
-    team_players = relationship('TeamPlayer', back_populates='team')
-    matches_as_home = relationship('Match', back_populates='home_team', foreign_keys='Match.HomeTeamID')
-    matches_as_away = relationship('Match', back_populates='away_team', foreign_keys='Match.AwayTeamID')
+    creator = relationship('Player', back_populates='created_teams')
+    members = relationship('TeamPlayer', back_populates='team', cascade="all, delete-orphan")
 
     def __repr__(self):
-        return f"<Team(TeamID={self.TeamID}, TeamName='{self.TeamName}')>"
+        return f"<Team(ID={self.ID}, TeamName={self.TeamName})>"
+

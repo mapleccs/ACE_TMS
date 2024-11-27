@@ -1,4 +1,4 @@
-from models.team_player import TeamPlayer
+from ..models.team_player import TeamPlayer
 from sqlalchemy.orm import Session
 from datetime import datetime
 
@@ -16,14 +16,14 @@ class TeamPlayerRepository:
     def get_current_team_player(self, player_id: int):
         """获取玩家当前所属的队伍"""
         return self.session.query(TeamPlayer).filter(
-            TeamPlayer.PlayerID == player_id,
+            player_id == TeamPlayer.PlayerID,
             TeamPlayer.EndDate == None
         ).first()
 
     def get_team_players_by_team(self, team_id: int):
         """获取队伍的所有当前成员"""
         return self.session.query(TeamPlayer).filter(
-            TeamPlayer.TeamID == team_id,
+            team_id == TeamPlayer.TeamID,
             TeamPlayer.EndDate == None
         ).all()
 
