@@ -1,5 +1,5 @@
 USERNAME = 'root'
-PASSWORD = 'chen1314'
+PASSWORD = '123456'
 HOST = 'localhost'
 DATABASE = 'ace_tms'
 

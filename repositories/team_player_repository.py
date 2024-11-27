@@ -1,4 +1,4 @@
-from ..models.team_player import TeamPlayer
+from models.team_player import TeamPlayer
 from sqlalchemy.orm import Session
 from datetime import datetime
 

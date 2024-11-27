@@ -1,4 +1,4 @@
-from ..models.player import Player
+from models.player import Player
 from sqlalchemy.orm import Session
 
 

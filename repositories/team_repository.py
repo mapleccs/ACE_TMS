@@ -1,4 +1,4 @@
-from ..models.team import Team
+from models.team import Team
 from sqlalchemy.orm import Session
 
 
@@ -14,7 +14,7 @@ class TeamRepository:
 
     def get_team_by_id(self, team_id: int):
         """根据ID获取队伍"""
-        return self.session.query(Team).filter(Team.TeamID == team_id).first()
+        return self.session.query(Team).filter(Team.ID == team_id).first()
 
     def get_team_by_name(self, team_name: str):
         """根据名称获取队伍"""
