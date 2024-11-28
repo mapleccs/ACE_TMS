@@ -1,0 +1,77 @@
+QMainWindow {
+    background-color: #FFFFFF;
+}
+
+#home_button {
+    background-color: #FFFFFF;
+    color: #0054FE;
+    font-size: 20px;
+    font-family: "Segoe UI", "Arial";
+    font-weight: bold;
+    border-radius: 5px;
+    padding: 10px;
+    border-style: none;
+}
+
+#left_button {
+    background-color: #0054FE;
+    width: 100px;
+    height: 50px;
+    border-radius: 5px;
+    border-style: none;
+    font-size: 18px;
+    color: #FFFFFF;
+    icon-size: 20px 20px;  /* 设置图标大小 */
+    padding-left: 30px;  /* 留出空间给图标 */
+    spacing: 30px;
+    text-align: left;
+}
+
+QStackedWidget {
+    border: none;
+    background-color: #fff;
+}
+
+#left_top_widget {
+    border: none;
+    background-color: #FFFFFF;
+}
+
+#right_top_widget {
+    border: none;
+    background-color: #FFFFFF;
+}
+
+#left_bottom_widget {
+    border: 1px solid #ddd;
+    background-color: #FFFFFF;
+}
+
+#right_bottom_widget {
+    border-width: 1px 1px 1px 0px;
+    border-style: solid;
+    background-color: #FFFFFF;
+}
+
+#home_page_label {
+    font-size: 40px;
+    color: #0054FE;
+}
+
+
+/* 副按钮设置 */
+#second_button {
+    background-color: transparent;  /* 默认背景透明 */
+    color: black;  /* 文字颜色 */
+    padding-left: 30px;  /* 文字和左侧图标的间距 */
+    border: 2px solid transparent;  /* 默认边框 */
+    font-size: 14px;
+    text-align: left;
+    width: 80px;
+    height: 40px;
+}
+
+#second_button:checked {
+    background-color: transparent;  /* 按钮点击后背景色 */
+    color: #1E90FF;  /* 按钮点击后文字颜色 */
+}
