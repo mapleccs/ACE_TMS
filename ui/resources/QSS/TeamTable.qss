@@ -1,0 +1,41 @@
+/* QTableView 样式 */
+QTableView {
+    border: 1px solid #dddddd;
+    background-color: #f9f9f9;
+    gridline-color: #cccccc;
+    selection-background-color: #a3c8ff;
+    selection-color: black;
+}
+
+QHeaderView::section {
+    background-color: #dcdcdc;   /* 表头背景色 */
+    border: 1px solid #b0b0b0;
+    padding: 5px;
+    font-weight: bold;
+    color: #333333;
+}
+
+QTableView QTableCornerButton::section {
+    background-color: #4CAF50;   /* 左上角表格角标 */
+}
+
+QTableView::item {
+    padding: 5px;                 /* 单元格内边距 */
+}
+
+QTableView::item:selected {
+    background-color: #87CEFA;    /* 选中的单元格背景色 */
+    color: white;                 /* 选中的单元格文字颜色 */
+}
+
+QTableView::item:hover {
+    background-color: #f1f1f1;   /* 悬浮时的单元格背景色 */
+}
+
+QTableView::indicator:checked {
+    background-color: #4CAF50;    /* 勾选框选中状态的背景色 */
+}
+
+QTableView::indicator:unchecked {
+    background-color: transparent; /* 勾选框未选中状态 */
+}

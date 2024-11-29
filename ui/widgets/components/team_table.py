@@ -1,84 +1,65 @@
-from PyQt6.QtWidgets import QTableView
-from PyQt6.QtCore import Qt, QAbstractTableModel
+from PyQt6.QtCore import Qt, QAbstractTableModel, QModelIndex, QVariant
+from PyQt6.QtWidgets import QTableView, QMessageBox, QHeaderView
 
 
-class TeamTable(QTableView):
-    def __init__(self):
-        super().__init__()
-        self.model = TeamTableModel()
-        self.setModel(self.model)
-        self.setSelectionBehavior(QTableView.SelectionBehavior.SelectRows)
-        self.setSelectionMode(QTableView.SelectionMode.SingleSelection)
-
-        self.verticalHeader().setVisible(False)
-        self.horizontalHeader().setStretchLastSection(True)
-
-    def set_teams(self, teams):
-        self.model.set_teams(teams)
-
-    def get_selected_team(self):
-        index = self.currentIndex()
-        if index.isValid():
-            return self.model.get_team_at_index(index.row())
-        return None
-
-
+# 模型
 class TeamTableModel(QAbstractTableModel):
-    def __init__(self):
+    def __init__(self, data=None):
         super().__init__()
-        self.teams = []
+        if data is None:
+            data = []
+        self._data = data
 
-    def set_teams(self, teams):
-        self.beginResetModel()
-        self.teams = teams
-        self.endResetModel()
+    def rowCount(self, parent=QModelIndex()):
+        return len(self._data)
 
-    def rowCount(self, parent=None):
-        return len(self.teams)
+    def columnCount(self, parent=QModelIndex()):
+        return 7  # 7列
 
-    def columnCount(self, parent=None):
-        return 7  # 队名、队长、队长联系方式、队伍配置、建队日期、队伍积分、队伍等级
-
-    def data(self, index, role=Qt.ItemDataRole.DisplayRole):
+    def data(self, index: QModelIndex, role: int):
         if not index.isValid():
             return None
-        team = self.teams[index.row()]
+        row = index.row()
+        column = index.column()
         if role == Qt.ItemDataRole.DisplayRole:
-            if index.column() == 0:
-                return team['队伍名称']
-            elif index.column() == 1:
-                return team['队长ID']
-            elif index.column() == 2:
-                return team['联系方式']
-            elif index.column() == 3:
-                return team['队伍配置']
-            elif index.column() == 4:
-                return team['建队日期']
-            elif index.column() == 5:
-                return team['队伍积分']
-            elif index.column() == 6:
-                return team['队伍等级']
+            headers = ['队伍名称', '队长ID', '联系方式', '队伍配置', '建队日期', '队伍积分', '队伍等级']
+            return self._data[row][headers[column]]
         return None
 
-    def headerData(self, section, orientation, role=Qt.ItemDataRole.DisplayRole):
-        if orientation == Qt.Orientation.Horizontal and role == Qt.ItemDataRole.DisplayRole:
-            if section == 0:
-                return "队伍名称"
-            elif section == 1:
-                return "队长ID"
-            elif section == 2:
-                return "联系方式"
-            elif section == 3:
-                return "队伍配置"
-            elif section == 4:
-                return "建队日期"
-            elif section == 5:
-                return "队伍积分"
-            elif section == 6:
-                return "队伍等级"
+    def headerData(self, section: int, orientation: Qt.Orientation, role: int):
+        if role == Qt.ItemDataRole.DisplayRole:
+            headers = ['队伍名称', '队长ID', '联系方式', '队伍配置', '建队日期', '队伍积分', '队伍等级']
+            return QVariant(headers[section])
         return None
 
-    def get_team_at_index(self, row):
-        if 0 <= row < len(self.teams):
-            return self.teams[row]
-        return None
+
+# 视图
+class TeamTableView(QTableView):
+    def __init__(self, parent=None):
+        super().__init__(parent)
+        self.setSelectionBehavior(QTableView.SelectionBehavior.SelectItems)
+        self.setSelectionMode(QTableView.SelectionMode.SingleSelection)
+
+        # 隐藏行号
+        self.verticalHeader().setVisible(False)  # 隐藏垂直表头（行号）
+
+        # 设置每列宽度均匀分配
+        self.horizontalHeader().setSectionResizeMode(QHeaderView.ResizeMode.Stretch)  # 均匀填充宽度
+
+    def mousePressEvent(self, event):
+        index = self.indexAt(event.pos())
+        if index.isValid():
+            if index.column() == 3:  # "队伍配置"列是第3列（列索引3）
+                self.on_config_cell_click(index)
+        super().mousePressEvent(event)
+
+    def on_config_cell_click(self, index: QModelIndex):
+        config_value = self.model().data(index, Qt.ItemDataRole.DisplayRole)
+        self.show_config_info(config_value)
+
+    def show_config_info(self, config_value):
+        msg = QMessageBox(self)
+        msg.setIcon(QMessageBox.Icon.Information)
+        msg.setWindowTitle("队伍配置详情")
+        msg.setText(f"队伍配置值为：{config_value}")
+        msg.exec()
