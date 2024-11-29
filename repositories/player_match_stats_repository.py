@@ -1,4 +1,4 @@
-from ..models.player_match_stats import PlayerMatchStats
+from models.player_match_stats import PlayerMatchStats
 from sqlalchemy.orm import Session
 
 
