@@ -1,4 +1,4 @@
-from ..models.match_pick_ban import MatchPickBan
+from models.match_pick_ban import MatchPickBan
 from sqlalchemy.orm import Session
 
 

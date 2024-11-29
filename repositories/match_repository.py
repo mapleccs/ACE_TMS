@@ -1,4 +1,4 @@
-from ..models.match import Match
+from models.match import Match
 from sqlalchemy.orm import Session
 
 

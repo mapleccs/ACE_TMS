@@ -1,4 +1,4 @@
-from ..models.hero import Hero
+from models.hero import Hero
 from sqlalchemy.orm import Session
 from sqlalchemy.exc import SQLAlchemyError
 
