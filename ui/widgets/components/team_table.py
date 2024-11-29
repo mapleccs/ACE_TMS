@@ -32,6 +32,12 @@ class TeamTableModel(QAbstractTableModel):
             return QVariant(headers[section])
         return None
 
+    def set_data(self, data):
+        """更新数据并刷新表格"""
+        self.beginResetModel()  # 开始重置模型，通知视图更新
+        self._data = data
+        self.endResetModel()  # 结束重置模型
+
 
 # 视图
 class TeamTableView(QTableView):

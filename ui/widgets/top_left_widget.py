@@ -22,5 +22,4 @@ class TopLeftWidget(QWidget):
 
     def emit_home_button_clicked(self):
         """发射自定义信号"""
-
         self.home_button_clicked.emit()

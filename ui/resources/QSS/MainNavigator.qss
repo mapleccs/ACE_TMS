@@ -1,4 +1,42 @@
-#team_search_label {
-    color: blue;
-    font-size: 18px;
+#team_count_label {
+    color: #45457E;
+    font-size: 22px;
+    font-weight: bold;
+}
+
+#team_search_input {
+    background-color: #f1f1f1;
+    border: 2px solid #8e8e8e;
+    border-radius: 5px;
+    color: #333333;
+    font-size: 14px;
+    padding: 5px;
+}
+
+#team_search_input:focus {
+    background-color: #ffffff;
+    border: 2px solid #4CAF50;
+}
+
+#team_search_input::placeholder {
+    color: #999999;
+    font-style: italic;
+    font-size: 12px;
+}
+
+#team_search_input::selection {
+    background-color: #a3c8ff;
+    color: black;
+}
+
+#team_search_input:disabled {
+    background-color: #f0f0f0;
+    color: #a0a0a0;
+    border: 2px solid #dcdcdc;
+}
+
+#team_search_input[readOnly="true"] {
+    background-color: #f9f9f9;
+    color: #666666;
+    border: 2px solid #dcdcdc;
 }

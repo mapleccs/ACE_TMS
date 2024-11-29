@@ -12,7 +12,7 @@ class MainWindow(QMainWindow):
         super().__init__()
 
         self.setWindowTitle("ACE联盟管理系统")
-        self.setGeometry(100, 100, 1000, 600)  # 设置窗口大小
+        self.setGeometry(400, 200, 1000, 600)  # 设置窗口大小
 
         # 调用加载 QSS 样式的函数，自动加载 QSS 文件
         self.apply_styles()
@@ -34,6 +34,8 @@ class MainWindow(QMainWindow):
 
         self.left_top_widget.home_button_clicked.connect(self.show_home_page)  # 连接自定义信号
         self.left_top_widget.home_button_clicked.connect(self.right_top_widget.show_home_page)
+
+        self.right_top_widget.search_teams_signal.connect(self.right_bottom_widget.team_management_widget.update_table_data)
 
         self.left_bottom_widget.team_button_clicked.connect(self.show_team_table_page)
         self.left_bottom_widget.team_button_clicked.connect(self.right_top_widget.show_team_search_page)

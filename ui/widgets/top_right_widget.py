@@ -1,7 +1,11 @@
+from PyQt6.QtCore import pyqtSignal
 from PyQt6.QtWidgets import QWidget, QStackedWidget, QHBoxLayout, QLabel, QLineEdit, QVBoxLayout
 
 
 class TopRightWidget(QWidget):
+    # 定义一个信号，用于传递搜索关键词
+    search_teams_signal = pyqtSignal(str)
+
     def __init__(self):
         super().__init__()
 
@@ -9,16 +13,16 @@ class TopRightWidget(QWidget):
 
         # 创建战队数据搜索栏界面
         self.team_search_widget = QWidget()
-        team_search_layout = QHBoxLayout()
-        self.team_search_label = QLabel("搜索战队数据")
-        self.team_search_label.setObjectName("team_search_label")
+        team_count_layout = QHBoxLayout()
+        self.team_count_label = QLabel("战队数据总览")
+        self.team_count_label.setObjectName("team_count_label")
         self.team_search_input = QLineEdit()
         self.team_search_input.setObjectName("team_search_input")
-        self.team_search_input.setPlaceholderText("请输入搜索内容...")
+        self.team_search_input.setPlaceholderText("检索：队伍名称")
 
-        team_search_layout.addWidget(self.team_search_label)
-        team_search_layout.addWidget(self.team_search_input)
-        self.team_search_widget.setLayout(team_search_layout)
+        team_count_layout.addWidget(self.team_count_label)
+        team_count_layout.addWidget(self.team_search_input)
+        self.team_search_widget.setLayout(team_count_layout)
 
         # 创建home开始空白页面
         self.home_page_widget = QWidget()
@@ -45,6 +49,11 @@ class TopRightWidget(QWidget):
 
         self.setLayout(right_top_layout)
 
+    def emit_search_signal(self):
+        """发射信号，将搜索框中的内容传递出去"""
+        search_text = self.team_search_input.text()
+        self.search_teams_signal.emit(search_text)
+
     def show_home_page(self):
         """切换到空白界面"""
         self.right_top_panel.setCurrentWidget(self.home_page_widget)
@@ -52,3 +61,4 @@ class TopRightWidget(QWidget):
     def show_team_search_page(self):
         """切换到战队数据搜索界面"""
         self.right_top_panel.setCurrentWidget(self.team_search_widget)
+

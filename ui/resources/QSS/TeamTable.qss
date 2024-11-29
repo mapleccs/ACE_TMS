@@ -5,14 +5,16 @@ QTableView {
     gridline-color: #cccccc;
     selection-background-color: #a3c8ff;
     selection-color: black;
+    text-align: center;
 }
 
 QHeaderView::section {
-    background-color: #dcdcdc;   /* 表头背景色 */
+    background-color: #45457E;   /* 表头背景色 */
     border: 1px solid #b0b0b0;
     padding: 5px;
     font-weight: bold;
-    color: #333333;
+    text-align: center;
+    color: #ffffff;
 }
 
 QTableView QTableCornerButton::section {
@@ -20,7 +22,8 @@ QTableView QTableCornerButton::section {
 }
 
 QTableView::item {
-    padding: 5px;                 /* 单元格内边距 */
+    padding: 2px;                 /* 单元格内边距 */
+    text-align: center;             /* 单元格内容居中对齐 */
 }
 
 QTableView::item:selected {
