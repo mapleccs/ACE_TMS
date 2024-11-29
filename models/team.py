@@ -14,8 +14,9 @@ class Team(Base):
     TeamName = Column(String(50), nullable=False, unique=True)
     TeamAbbreviation = Column(String(50), nullable=False)
     TeamLogo = Column(String(500), nullable=True)
-    PlayerID = Column(Integer, ForeignKey('player.ID'), nullable=False)
+    PlayerID = Column(Integer, ForeignKey('player.ID'), nullable=True)
     TeamState = Column(Integer, nullable=False, default=0)  # 0: 在役, 1: 正常注销, 2: 注销, 3: 冻结
+    Remark = Column(String(255), nullable=True)
 
     creator = relationship('Player', back_populates='created_teams')
     members = relationship('TeamPlayer', back_populates='team', cascade="all, delete-orphan")
