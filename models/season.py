@@ -1,4 +1,4 @@
-from sqlalchemy import Column, Integer, String, DateTime, ForeignKey
+from sqlalchemy import Column, Integer, String, Date, ForeignKey
 from sqlalchemy.orm import relationship
 from .base import Base
 import datetime
@@ -8,8 +8,8 @@ class Season(Base):
 
     ID = Column(Integer, primary_key=True, autoincrement=True)
     SeasonName = Column(String(50), nullable=False)
-    StartDate = Column(DateTime, nullable=False)
-    EndDate = Column(DateTime, nullable=False)
+    StartDate = Column(Date, nullable=False)
+    EndDate = Column(Date, nullable=False)
     State = Column(Integer, nullable=False, default=0)  # 0: 进行中, 1: 未开始, 2: 已结束
 
     matches = relationship('Match', back_populates='season', cascade="all, delete-orphan")

@@ -21,5 +21,9 @@ class Match(Base):
     away_team = relationship('Team', foreign_keys=[AwayTeamID], back_populates='matches_as_away')
     winner_team = relationship('Team', foreign_keys=[WinnerTeamID])
 
+    picks_bans = relationship('MatchPickBan', back_populates='match', cascade="all, delete-orphan")
+
+    player_stats = relationship('PlayerMatchStats', back_populates='match', cascade="all, delete-orphan")
+
     def __repr__(self):
         return f"<Match(ID={self.ID}, HomeTeamID={self.HomeTeamID}, AwayTeamID={self.AwayTeamID})>"

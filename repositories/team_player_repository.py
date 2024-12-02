@@ -1,6 +1,7 @@
-from models.team_player import TeamPlayer
-from sqlalchemy.orm import Session
+from sqlalchemy.orm import Session, aliased
+from sqlalchemy import func, case, desc, cast, Integer
 from datetime import datetime
+from models import Team, Player, TeamPlayer, PlayerReasonScore
 
 
 class TeamPlayerRepository:
@@ -35,3 +36,28 @@ class TeamPlayerRepository:
             self.session.commit()
             return True
         return False
+
+    def get_team_player_with_season_detail_by_team(self, team_id: int):
+        """根据teamID查询队伍的成员， 显示成员名称，偏好位置，游戏id，个人积分（总），队内职位"""
+
+        team_player = aliased(TeamPlayer)
+        player = aliased(Player)
+        player_reason_score = aliased(PlayerReasonScore)
+
+
+        query = self.session.query(
+            player.ID,
+            player.PlayerName,
+            player.PreferredRoles,
+            player.InGameName,
+            player_reason_score.TotalScore,
+            team_player.JobType,
+        ).select_from(player).outerjoin(
+            team_player, team_player.PlayerID == player.ID
+        ).outerjoin(
+            player_reason_score, player_reason_score.PlayerID == player.ID
+        ).filter(
+            team_player.TeamID == team_id,
+        )
+
+        return query.all()
