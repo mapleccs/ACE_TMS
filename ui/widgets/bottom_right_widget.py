@@ -3,6 +3,7 @@ from PyQt6.QtWidgets import QWidget, QVBoxLayout, QLabel, QStackedWidget
 from ui.widgets.team_management import TeamManagementWidget
 from ui.widgets.match_management import MatchManagementWidget
 from ui.widgets.player_management import PlayerManagementWidget
+from ui.widgets.team_detail_data_widget import TeamDetailDataWidget
 
 
 class BottomRightWidget(QWidget):
@@ -16,11 +17,13 @@ class BottomRightWidget(QWidget):
         self.home_page_label.setAlignment(Qt.AlignmentFlag.AlignCenter)
 
         self.team_management_widget = TeamManagementWidget()
+        self.team_detail_data_widget = TeamDetailDataWidget()
         self.match_management_widget = MatchManagementWidget()
         self.player_management_widget = PlayerManagementWidget()
 
         self.right_panel.addWidget(self.home_page_label)
         self.right_panel.addWidget(self.team_management_widget)
+        self.right_panel.addWidget(self.team_detail_data_widget)
         self.right_panel.addWidget(self.match_management_widget)
         self.right_panel.addWidget(self.player_management_widget)
 

@@ -1,0 +1,33 @@
+/* ------------------- 左侧面板样式 -------------------- */
+#team_membership_widget {
+    background-color: #f0f8ff;  /* 背景颜色：淡蓝色 */
+    padding: 10px;
+}
+
+#team_icon {
+    border-radius: 10px;
+    border: 2px solid #87ceeb;  /* 队伍图标边框 */
+}
+
+/* 右侧面板 */
+#team_honor_widget {
+    background-color: #90ee90;  /* 背景颜色：淡绿色 */
+}
+
+#match_records_widget {
+    background-color: #fffacd;  /* 背景颜色：淡黄色 */
+}
+
+/* 队伍名称和其他标签 */
+#team_name_label, #cb_label, #long_text_label,
+#match_count_label, #win_rate_label, #team_score_label, #team_rating_label,
+#contact1_label, #contact2_label {
+    font-weight: bold;  /* 设置字体加粗 */
+}
+
+/* 长文本标签 */
+#long_text_label {
+    font-size: 12px;  /* 设置字体大小 */
+    color: #555555;  /* 设置文本颜色 */
+}
+

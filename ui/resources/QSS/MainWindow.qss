@@ -22,15 +22,15 @@ QMainWindow {
     font-size: 18px;
     color: #FFFFFF;
     icon-size: 20px 20px;  /* 设置图标大小 */
-    padding-left: 30px;  /* 留出空间给图标 */
+    padding-left: none;  /* 留出空间给图标 */
     spacing: 30px;
-    text-align: left;
+    text-align: center;
 }
 
-QStackedWidget {
-    border: none;
-    background-color: #fff;
-}
+/*QStackedWidget {*/
+/*    border: none;*/
+/*    background-color: #fff;*/
+/*}*/
 
 #left_top_widget {
     border: none;

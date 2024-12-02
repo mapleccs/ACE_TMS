@@ -4,6 +4,8 @@
     font-weight: bold;
 }
 
+
+/* 搜索框设计 */
 #team_search_input {
     background-color: #f1f1f1;
     border: 2px solid #8e8e8e;
@@ -38,5 +40,57 @@
 #team_search_input[readOnly="true"] {
     background-color: #f9f9f9;
     color: #666666;
+    border: 2px solid #dcdcdc;
+}
+
+
+/* 下拉框设计 */
+#sort_combo {
+    background-color: #f1f1f1;
+    border: 2px solid #8e8e8e;
+    border-radius: 5px;
+    color: #333333;
+    font-size: 14px;
+    padding: 5px;
+}
+
+#sort_combo:focus {
+    background-color: #ffffff;
+    border: 2px solid #4CAF50;
+}
+
+#sort_combo::down-arrow {
+    image: url("ui/resources/ICON/下拉箭头-下.png");  /* 自定义箭头图标 */
+    width: 15px;                   /* 箭头宽度 */
+    height: 15px;                  /* 箭头高度 */
+}
+
+#sort_combo::drop-down {
+    border: none;  /* 去掉下拉框的边框 */
+    width: 15px;     /* 完全隐藏箭头区域 */
+    padding: 15px;   /* 去掉额外的内边距 */
+}
+
+#sort_combo QAbstractItemView {
+    background-color: #ffffff;
+    border: 2px solid #8e8e8e;
+    selection-background-color: #a3c8ff;
+    selection-color: black;
+    min-width: 150px;
+    max-height: 200px;
+}
+
+#sort_combo QAbstractItemView::item {
+    padding: 5px;
+}
+
+#sort_combo::item:selected {
+    background-color: #a3c8ff;
+    color: black;
+}
+
+#sort_combo:disabled {
+    background-color: #f0f0f0;
+    color: #a0a0a0;
     border: 2px solid #dcdcdc;
 }

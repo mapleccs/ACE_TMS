@@ -1,5 +1,14 @@
 <RCC>
     <qresource prefix="/icons">
-        <file>ICON/信号.png</file>
+        <file>ICON/下拉箭头-下.png</file>
+        <file>ICON/信号格.png</file>
+        <file>ICON/实心圆点.png</file>
+        <file>ICON/空心圆点.png</file>
+    </qresource>
+
+    <qresource prefix="/qss">
+        <file>QSS/MainNavigator.qss</file>
+        <file>QSS/MainWindow.qss</file>
+        <file>QSS/TeamTable.qss</file>
     </qresource>
 </RCC>

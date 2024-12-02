@@ -7,6 +7,7 @@ class BottomLeftWidget(QWidget):
     # 自定义信号
     team_button_clicked = pyqtSignal()
     team_details_entry_button_clicked = pyqtSignal()
+    team_details_management_button_clicked = pyqtSignal()
 
     def __init__(self):
         super().__init__()
@@ -93,6 +94,7 @@ class BottomLeftWidget(QWidget):
 
         # 连接按钮点击事件到自定义信号
         self.team_button.clicked.connect(self.emit_team_button_clicked)
+        self.team_details_management_button.clicked.connect(self.emit_team_details_management_button_clicked)
         self.team_details_entry_button.clicked.connect(self.team_details_entry_button_clicked)
 
     def emit_team_button_clicked(self):
@@ -102,3 +104,6 @@ class BottomLeftWidget(QWidget):
     def emit_team_details_entry_button_clicked(self):
         """发射自定义信号"""
         self.team_details_entry_button_clicked.emit()
+
+    def emit_team_details_management_button_clicked(self):
+        self.team_details_management_button_clicked.emit()

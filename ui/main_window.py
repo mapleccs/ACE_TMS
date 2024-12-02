@@ -1,9 +1,11 @@
+from PyQt6.QtCore import pyqtSignal
 from PyQt6.QtWidgets import QMainWindow, QSplitter
 from PyQt6.QtCore import Qt
 from ui.widgets.top_left_widget import TopLeftWidget
 from ui.widgets.top_right_widget import TopRightWidget
 from ui.widgets.bottom_left_widget import BottomLeftWidget
 from ui.widgets.bottom_right_widget import BottomRightWidget
+from ui.widgets.components.team_table import TeamTableView
 from utils.LoadQSS import apply_stylesheets
 
 
@@ -12,7 +14,7 @@ class MainWindow(QMainWindow):
         super().__init__()
 
         self.setWindowTitle("ACE联盟管理系统")
-        self.setGeometry(400, 200, 1000, 600)  # 设置窗口大小
+        self.setGeometry(100, 100, 1600, 900)  # 设置窗口大小
 
         # 调用加载 QSS 样式的函数，自动加载 QSS 文件
         self.apply_styles()
@@ -32,14 +34,6 @@ class MainWindow(QMainWindow):
         self.left_bottom_widget = BottomLeftWidget()
         self.right_bottom_widget = BottomRightWidget()
 
-        self.left_top_widget.home_button_clicked.connect(self.show_home_page)  # 连接自定义信号
-        self.left_top_widget.home_button_clicked.connect(self.right_top_widget.show_home_page)
-
-        self.right_top_widget.search_teams_signal.connect(self.right_bottom_widget.team_management_widget.update_table_data)
-
-        self.left_bottom_widget.team_button_clicked.connect(self.show_team_table_page)
-        self.left_bottom_widget.team_button_clicked.connect(self.right_top_widget.show_team_search_page)
-
         # 将各个部分添加到垂直分割器中
         left_splitter.addWidget(self.left_top_widget)
         left_splitter.addWidget(self.left_bottom_widget)
@@ -54,7 +48,7 @@ class MainWindow(QMainWindow):
         self.setCentralWidget(main_splitter)
 
         # 设置左侧和右侧的初始大小比例
-        main_splitter.setSizes([200, 800])  # 左侧宽度300px，右侧宽度700px
+        main_splitter.setSizes([10, 600])  # 左侧宽度300px，右侧宽度700px
 
         # 设置左侧上/下区域的大小比例
         left_splitter.setSizes([50, 550])  # 左侧上部分占比 2，左侧下部分占比 1
@@ -67,12 +61,37 @@ class MainWindow(QMainWindow):
         left_splitter.setHandleWidth(0)  # 禁用左侧垂直分割器的调整
         right_splitter.setHandleWidth(0)  # 禁用右侧垂直分割器的调整
 
+        # -----------------------------> 信号连接器初始化 <--------------------------------
+        self.team_table_view = TeamTableView()
+
+        # -----------------------------> 信号连接 <---------------------------------------
+        # 点击"ACE联盟管理系统"按钮，显示主界面
+        self.left_top_widget.home_button_clicked.connect(self.show_home_page)
+        # 点击"ACE联盟管理系统"按钮，对"导航栏"进行显示，这里为空白导航栏
+        self.left_top_widget.home_button_clicked.connect(self.right_top_widget.show_home_page)
+        # 点击"战队管理"按钮，显示"战队表格"
+        self.left_bottom_widget.team_button_clicked.connect(self.show_team_table_page)
+        # "战队管理" -> "导航栏" -> 点击"战队搜索栏"，对表格进行查询搜索
+        self.right_top_widget.search_teams_signal.connect(self.right_bottom_widget.team_management_widget.update_table_data)
+        # "战队管理" -> "导航栏" -> 点击"排序下拉框"，对表格进行排序
+        self.right_top_widget.sort_teams_signal.connect(self.right_bottom_widget.team_management_widget.sort_teams)
+        # 点击"战队管理"按钮，显示"战队数据总览"导航栏
+        self.left_bottom_widget.team_button_clicked.connect(self.right_top_widget.show_team_search_page)
+        # 点击"战队管理资料"按钮，显示"战队数据"
+        self.left_bottom_widget.team_details_management_button.clicked.connect(self.show_team_detail_page)
+
     def show_home_page(self):
         """切换到欢迎页面"""
         self.right_bottom_widget.right_panel.setCurrentWidget(self.right_bottom_widget.home_page_label)
 
     def show_team_table_page(self):
+        """切换到战队数据面板"""
         self.right_bottom_widget.right_panel.setCurrentWidget(self.right_bottom_widget.team_management_widget)
+
+    def show_team_detail_page(self):
+        """切换到战队详细数据面板"""
+        print("展示队伍详情")
+        self.right_bottom_widget.right_panel.setCurrentWidget(self.right_bottom_widget.team_detail_data_widget)
 
     def apply_styles(self):
         """应用样式表"""

@@ -5,6 +5,7 @@ QSS_FILES = [
     'ui/resources/QSS/TeamTable.qss',
     'ui/resources/QSS/MainWindow.qss',
     'ui/resources/QSS/MainNavigator.qss',
+    'ui/resources/QSS/TeamDetailDataWidget.qss',
 ]
 
 
