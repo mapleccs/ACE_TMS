@@ -113,4 +113,20 @@ class TeamRepository:
             desc(team_season_score.TotalScore)
         )
 
-        return query.all()
+        result = query.all()
+
+        result_dicts = [
+            {
+                'teamName': row[0],
+                'teamAbbreviation': row[1],
+                'captainID': row[2],
+                'captainQQ': row[3],
+                'teamNum': row[4],
+                'createDate': row[5],
+                'totalScore': row[6],
+                'level': row[7]
+            }
+            for row in result
+        ]
+
+        return result_dicts
