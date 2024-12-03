@@ -37,7 +37,7 @@ class TeamRepository:
         self.session.delete(team)
         self.session.commit()
 
-    def get_all_teams_with_season_detail(self, teamName: str = None, teamAbbreviation: str = None):
+    def get_all_teams_with_season_detail(self, team_name: str = None, team_abbreviation: str = None):
         """查询队伍基本信息，队伍名称，队伍简称，队长id，联系方式，队伍配置，建队日期，队伍积分，队伍等级，可通过名称和简称模糊查询"""
         team_player = aliased(TeamPlayer)
         team_leader = aliased(Player)
@@ -94,10 +94,10 @@ class TeamRepository:
         )
 
 
-        if teamName:
-            query = query.filter(team.TeamName.like(f'%{teamName}%'))
-        if teamAbbreviation:
-            query = query.filter(team.TeamAbbreviation.like(f'%{teamAbbreviation}%'))
+        if team_name:
+            query = query.filter(team.TeamName.like(f'%{team_name}%'))
+        if team_abbreviation:
+            query = query.filter(team.TeamAbbreviation.like(f'%{team_abbreviation}%'))
 
         # 排序 根据总积分排序
         query = query.with_entities(
@@ -113,4 +113,20 @@ class TeamRepository:
             desc(team_season_score.TotalScore)
         )
 
-        return query.all()
+        result = query.all()
+
+        result_dicts = [
+            {
+                'teamName': row[0],
+                'teamAbbreviation': row[1],
+                'captainID': row[2],
+                'captainQQ': row[3],
+                'teamNum': row[4],
+                'createDate': row[5],
+                'totalScore': row[6],
+                'level': row[7]
+            }
+            for row in result
+        ]
+
+        return result_dicts
