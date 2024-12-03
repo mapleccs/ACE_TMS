@@ -2,7 +2,8 @@ from repositories.team_player_repository import TeamPlayerRepository
 from models.team_player import TeamPlayer
 from sqlalchemy.orm import Session
 
-## 英雄表service层
+"""队伍成员表service层"""
+"""表格功能：队伍表和玩家表的关联关系"""
 class TeamPlayerService:
     def __init__(self, session: Session):
         self.session = session
