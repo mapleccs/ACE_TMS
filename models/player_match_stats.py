@@ -2,6 +2,7 @@ from sqlalchemy import Column, Integer, ForeignKey, Float, String
 from sqlalchemy.orm import relationship
 from .base import Base
 
+
 class PlayerMatchStats(Base):
     __tablename__ = 'playerMatchStats'
 
@@ -12,7 +13,7 @@ class PlayerMatchStats(Base):
     HeroID = Column(Integer, ForeignKey('hero.ID'), nullable=False)
     Position = Column(String(20), nullable=True)
 
-    #统计数据
+    # 统计数据
     Kills = Column(Integer, default=0)
     Deaths = Column(Integer, default=0)
     Assists = Column(Integer, default=0)

@@ -1,6 +1,8 @@
 import re
 from PyQt6.QtWidgets import QWidget, QVBoxLayout
 from ui.widgets.components.team_table import TeamTableView, TeamTableModel
+from services.team_service import TeamService
+from utils.db_utils import get_database_session
 
 
 class TeamManagementWidget(QWidget):
@@ -15,19 +17,14 @@ class TeamManagementWidget(QWidget):
         self.team_table = TeamTableView()
         layout.addWidget(self.team_table)
 
-        # 模拟数据
-        self.teams = [
-            {'队伍名称': 'KT1', '队长ID': 'Player 1', '联系方式': '10086', '队伍配置': '10人',
-             '建队日期': '2024-10-10', '队伍积分': 16, '队伍等级': 'C'},
-            {'队伍名称': 'CB', '队长ID': 'Player 2', '联系方式': '10087', '队伍配置': '12人',
-             '建队日期': '2024-10-12', '队伍积分': 15, '队伍等级': 'D'},
-            {'队伍名称': 'SSW', '队长ID': 'Player 3', '联系方式': '10088', '队伍配置': '15人',
-             '建队日期': '2024-10-14', '队伍积分': 12, '队伍等级': 'C'},
-        ]
+        # 获取服务层返回的teams数据
+        session = get_database_session()
+        team_service = TeamService(session)
+        self.teams = team_service.get_all_teams()
 
         self.model = TeamTableModel(self.teams)
 
-        # 将模拟数据传递给TeamTable
+        # 将数据传递给TeamTable
         self.team_table.setModel(self.model)
 
         # 设置布局

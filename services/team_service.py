@@ -1,25 +1,65 @@
-from itertools import groupby
-
 from repositories.team_player_repository import TeamPlayerRepository
 from repositories.team_repository import TeamRepository
 from models.team import Team
 from sqlalchemy.orm import Session
 
 """队伍表service层"""
+
+
 class TeamService:
     def __init__(self, session: Session):
         self.session = session
         self.team_repository = TeamRepository(session)
         self.team_player_repository = TeamPlayerRepository(session)
 
-    """功能描述：可以获取队伍的基本信息，例如:名称，简称，队长ID等，并根据名称或简称模糊查询"""
-    def get_all_teams(self, entity:Team = None):
+    def get_all_teams(self, entity: Team = None):
+        """
+        功能描述：可以获取队伍的基本信息，
+        例如:名称，简称，队长ID等，并根据名称或简称模糊查询
+        """
+        # 提取查询条件
         team_name = None
         team_abbreviation = None
         if entity is not None:
             team_name = entity.TeamName
             team_abbreviation = entity.TeamAbbreviation
-        return self.team_repository.get_all_teams_with_season_detail(team_name, team_abbreviation)
+
+        # 获取队伍数据
+        teams = self.team_repository.get_all_teams_with_season_detail(team_name, team_abbreviation)
+
+        print(teams)
+        # 新的键名映射
+        new_key_names = {
+            'teamName': '队伍全称',
+            'teamAbbreviation': '队伍名称',
+            'captainName': '队长ID',
+            'captainQQ': '联系方式',
+            'teamNum': '队伍配置',
+            'createDate': '建队日期',
+            'totalScore': '队伍积分',
+            'level': '队伍等级'
+        }
+
+        # 处理数据，排除队伍名称并更换键名
+        updated_teams = []
+
+        for team in teams:
+            updated_team = {}
+
+            # 对每个键值进行转换
+            for key, value in team.items():
+                if key == 'teamName':  # 排除不需要的字段
+                    continue
+                elif key == 'createDate':  # 格式化创建日期
+                    updated_team[new_key_names[key]] = value.strftime("%Y-%m-%d")  # 转换为 "yyyy-mm-dd" 格式
+                elif key == 'teamNum':  # 格式化成员数量
+                    updated_team[new_key_names[key]] = f"{value}人"  # 添加 "人"
+                else:
+                    updated_team[new_key_names[key]] = value  # 其他字段直接映射
+
+            updated_teams.append(updated_team)
+
+        return updated_teams
 
     def add_team(self, team_name: str):
         team = Team(TeamName=team_name)
@@ -41,8 +81,11 @@ class TeamService:
         else:
             return False
 
-    """功能描述：可以获取队伍的基本信息，例如:名称，简称，队长ID等，并根据名称或简称模糊查询"""
     def get_team_detail_data(self, teamName: str):
+        """
+        功能描述：可以获取队伍的基本信息。
+        例如:名称，简称，队长ID等，并根据名称或简称模糊查询
+        """
         # 队伍基本信息
         team = self.team_repository.get_team_by_name(teamName)
         # 队友信息
