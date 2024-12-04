@@ -27,11 +27,12 @@ class TeamService:
         # 获取队伍数据
         teams = self.team_repository.get_all_teams_with_season_detail(team_name, team_abbreviation)
 
+        print(teams)
         # 新的键名映射
         new_key_names = {
             'teamName': '队伍全称',
             'teamAbbreviation': '队伍名称',
-            'captainID': '队长ID',
+            'captainName': '队长ID',
             'captainQQ': '联系方式',
             'teamNum': '队伍配置',
             'createDate': '建队日期',
