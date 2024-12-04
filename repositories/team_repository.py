@@ -103,7 +103,7 @@ class TeamRepository:
         query = query.with_entities(
             team.TeamName,
             team.TeamAbbreviation,
-            func.coalesce(team_leader.ID, 0).label('captainID'),
+            func.coalesce(team_leader.PlayerName, '未设置队长').label('captainName'),
             func.coalesce(team_leader.QQ, '未设置队长').label('captainQQ'),
             func.coalesce(all_team_count.c.teamNum, 0).label('teamNum'),
             team.CreateDate,
@@ -119,7 +119,7 @@ class TeamRepository:
             {
                 'teamName': row[0],
                 'teamAbbreviation': row[1],
-                'captainID': row[2],
+                'captainName': row[2],
                 'captainQQ': row[3],
                 'teamNum': row[4],
                 'createDate': row[5],
