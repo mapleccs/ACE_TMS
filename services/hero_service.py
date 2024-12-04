@@ -2,7 +2,7 @@ from repositories.hero_repository import HeroRepository
 from models.hero import Hero
 from sqlalchemy.orm import Session
 
-## 英雄表service层
+"""赛事禁用英雄表service层"""
 class HeroService:
     def __init__(self, session: Session):
         self.session = session

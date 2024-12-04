@@ -2,7 +2,8 @@ from repositories.player_match_stats_repository import PlayerMatchStatsRepositor
 from models.player_match_stats import PlayerMatchStats
 from sqlalchemy.orm import Session
 
-## 英雄表service层
+"""赛事计分表service层"""
+"""表格功能：对选手的操作计分"""
 class PlayerMatchStatsService:
     def __init__(self, session: Session):
         self.session = session

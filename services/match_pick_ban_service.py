@@ -3,7 +3,7 @@ from models.match_pick_ban import MatchPickBan
 from sqlalchemy.orm import Session
 
 
-# 英雄表service层
+"""英雄表service层"""
 class MatchPickBanService:
     def __init__(self, session: Session):
         self.session = session

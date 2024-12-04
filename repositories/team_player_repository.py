@@ -60,4 +60,20 @@ class TeamPlayerRepository:
             team_player.TeamID == team_id,
         )
 
-        return query.all()
+
+        result = query.all()
+
+        result_dicts = [
+            {
+                'playerId': row[0],
+                'playerName': row[1],
+                'preferredRoles': row[2],
+                'inGameName': row[3],
+                'totalScore': row[4],
+                'jobType': row[5],
+            }
+            for row in result
+        ]
+
+        return result_dicts
+
