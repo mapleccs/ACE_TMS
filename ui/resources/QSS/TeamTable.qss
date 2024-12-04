@@ -1,14 +1,15 @@
 /* QTableView 样式 */
-QTableView {
+#TeamTableView QTableView {
     border: 1px solid #dddddd;
     background-color: #f9f9f9;
     gridline-color: #cccccc;
     selection-background-color: #a3c8ff;
     selection-color: black;
     text-align: center;
+    color: #45457E;
 }
 
-QHeaderView::section {
+#TeamTableView QHeaderView::section {
     background-color: #45457E;   /* 表头背景色 */
     border: 1px solid #b0b0b0;
     padding: 5px;
@@ -17,28 +18,12 @@ QHeaderView::section {
     color: #ffffff;
 }
 
-QTableView QTableCornerButton::section {
+#TeamTableView QTableView QTableCornerButton::section {
     background-color: #4CAF50;   /* 左上角表格角标 */
 }
 
-QTableView::item {
+#TeamTableView QTableView::item {
     padding: 2px;                 /* 单元格内边距 */
     text-align: center;             /* 单元格内容居中对齐 */
-}
-
-QTableView::item:selected {
-    background-color: #87CEFA;    /* 选中的单元格背景色 */
-    color: white;                 /* 选中的单元格文字颜色 */
-}
-
-QTableView::item:hover {
-    background-color: #f1f1f1;   /* 悬浮时的单元格背景色 */
-}
-
-QTableView::indicator:checked {
-    background-color: #4CAF50;    /* 勾选框选中状态的背景色 */
-}
-
-QTableView::indicator:unchecked {
-    background-color: transparent; /* 勾选框未选中状态 */
+    background-color: #E3EBF3;
 }

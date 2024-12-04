@@ -1,11 +1,9 @@
-from PyQt6.QtCore import pyqtSignal
 from PyQt6.QtWidgets import QMainWindow, QSplitter
 from PyQt6.QtCore import Qt
 from ui.widgets.top_left_widget import TopLeftWidget
 from ui.widgets.top_right_widget import TopRightWidget
 from ui.widgets.bottom_left_widget import BottomLeftWidget
 from ui.widgets.bottom_right_widget import BottomRightWidget
-from ui.widgets.components.team_table import TeamTableView
 from utils.LoadQSS import apply_stylesheets
 
 
@@ -61,9 +59,6 @@ class MainWindow(QMainWindow):
         left_splitter.setHandleWidth(0)  # 禁用左侧垂直分割器的调整
         right_splitter.setHandleWidth(0)  # 禁用右侧垂直分割器的调整
 
-        # -----------------------------> 信号连接器初始化 <--------------------------------
-        self.team_table_view = TeamTableView()
-
         # -----------------------------> 信号连接 <---------------------------------------
         # 点击"ACE联盟管理系统"按钮，显示主界面
         self.left_top_widget.home_button_clicked.connect(self.show_home_page)
@@ -79,6 +74,12 @@ class MainWindow(QMainWindow):
         self.left_bottom_widget.team_button_clicked.connect(self.right_top_widget.show_team_search_page)
         # 点击"战队管理资料"按钮，显示"战队数据"
         self.left_bottom_widget.team_details_management_button.clicked.connect(self.show_team_detail_page)
+        # 点击"战队管理资料"按钮，显示"战队详情"导航栏
+        self.left_bottom_widget.team_details_management_button.clicked.connect(self.right_top_widget.show_team_detail_page)
+        # 点击"team_table"中的队伍配置，显示"战队详情页面"
+        self.right_bottom_widget.team_management_widget.team_table.team_selected.connect(self.show_team_detail_page)
+        # 点击"team_table"中的队伍配置，显示"战队详情"导航栏
+        self.right_bottom_widget.team_management_widget.team_table.team_selected.connect(self.right_top_widget.show_team_detail_page)
 
     def show_home_page(self):
         """切换到欢迎页面"""
@@ -90,7 +91,6 @@ class MainWindow(QMainWindow):
 
     def show_team_detail_page(self):
         """切换到战队详细数据面板"""
-        print("展示队伍详情")
         self.right_bottom_widget.right_panel.setCurrentWidget(self.right_bottom_widget.team_detail_data_widget)
 
     def apply_styles(self):

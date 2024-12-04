@@ -12,7 +12,7 @@ class TeamManagementWidget(QWidget):
         layout = QVBoxLayout()
 
         # 初始化TeamTable视图，显示队伍信息
-        self.team_table = TeamTableView()  # 使用TeamTable来显示数据
+        self.team_table = TeamTableView()
         layout.addWidget(self.team_table)
 
         # 模拟数据

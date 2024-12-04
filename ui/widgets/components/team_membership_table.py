@@ -3,7 +3,7 @@ from PyQt6.QtWidgets import QTableView, QHeaderView
 
 
 # 模型
-class TeamTableModel(QAbstractTableModel):
+class TeamMembershipTableModel(QAbstractTableModel):
     def __init__(self, data=None):
         super().__init__()
         if data is None:
@@ -14,7 +14,7 @@ class TeamTableModel(QAbstractTableModel):
         return len(self._data)
 
     def columnCount(self, parent=QModelIndex()):
-        return 7  # 7列
+        return 5  # 根据实际需要调整列数
 
     def data(self, index: QModelIndex, role: int):
         if not index.isValid():
@@ -22,32 +22,33 @@ class TeamTableModel(QAbstractTableModel):
         row = index.row()
         column = index.column()
         if role == Qt.ItemDataRole.DisplayRole:
-            headers = ['队伍名称', '队长ID', '联系方式', '队伍配置', '建队日期', '队伍积分', '队伍等级']
+            headers = ['位置', '昵称', '游戏ID', '积分', '职务']
             return self._data[row][headers[column]]
         return None
 
     def headerData(self, section: int, orientation: Qt.Orientation, role: int):
         if role == Qt.ItemDataRole.DisplayRole:
-            headers = ['队伍名称', '队长ID', '联系方式', '队伍配置', '建队日期', '队伍积分', '队伍等级']
-            return QVariant(headers[section])
+            headers = ['位置', '昵称', '游戏ID', '积分', '职务']
+            if orientation == Qt.Orientation.Horizontal:
+                return QVariant(headers[section])
+            else:
+                return QVariant(section + 1)
         return None
 
     def set_data(self, data):
         """更新数据并刷新表格"""
-        self.beginResetModel()  # 开始重置模型，通知视图更新
+        self.beginResetModel()
         self._data = data
-        self.endResetModel()  # 结束重置模型
+        self.endResetModel()
 
 
 # 视图
-class TeamTableView(QTableView):
-    team_selected = pyqtSignal(str)
-
-    def __init__(self, stacked_widget=None, parent=None):
+class TeamMembershipTableView(QTableView):
+    def __init__(self, parent=None):
         super().__init__(parent)
-        self.setObjectName("TeamTableView")
 
-        self.setSelectionBehavior(QTableView.SelectionBehavior.SelectItems)
+        self.setObjectName("TeamMembershipTableView")
+        # self.setSelectionBehavior(QTableView.SelectionBehavior.SelectItems)
         self.setSelectionMode(QTableView.SelectionMode.SingleSelection)
 
         # 隐藏行号
@@ -55,12 +56,3 @@ class TeamTableView(QTableView):
 
         # 设置每列宽度均匀分配
         self.horizontalHeader().setSectionResizeMode(QHeaderView.ResizeMode.Stretch)
-
-        self.stacked_widget = stacked_widget  # 将 stacked_widget 传递给视图，用于页面切换
-
-    def mousePressEvent(self, event):
-        index = self.indexAt(event.pos())
-        if index.column() == 3:  # "队伍配置"列是第3列（列索引3）
-            team_name = self.model().data(self.model().index(index.row(), 0), Qt.ItemDataRole.DisplayRole)
-            self.team_selected.emit(team_name)  # 发出队伍名称信号
-        super().mousePressEvent(event)

@@ -5,24 +5,24 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="f359975e-3585-4c9d-8f9f-8debeebe710c" name="更改" comment="">
-      <change afterPath="$PROJECT_DIR$/ui/resources/QSS/TeamDetailDataWidget.qss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ui/widgets/team_detail_data_widget.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ui/widgets/team_detail_entry_widget.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/utils/application_init.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/lol_tournament.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/lol_tournament.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app.py" beforeDir="false" afterPath="$PROJECT_DIR$/app.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/services/match_pick_ban_service.py" beforeDir="false" afterPath="$PROJECT_DIR$/services/match_pick_ban_service.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ui/resources/QSS/MatchRecordsTable.qss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ui/widgets/components/match_records_table.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ui/widgets/components/team_membership_table.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ui/ACE数据管理1.1.1.241127_alpha.xd" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/ui/main_window.py" beforeDir="false" afterPath="$PROJECT_DIR$/ui/main_window.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ui/resources/QSS/MainNavigator.qss" beforeDir="false" afterPath="$PROJECT_DIR$/ui/resources/QSS/MainNavigator.qss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ui/resources/QSS/MainWindow.qss" beforeDir="false" afterPath="$PROJECT_DIR$/ui/resources/QSS/MainWindow.qss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ui/resources/resources.qrc" beforeDir="false" afterPath="$PROJECT_DIR$/ui/resources/resources.qrc" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ui/widgets/bottom_left_widget.py" beforeDir="false" afterPath="$PROJECT_DIR$/ui/widgets/bottom_left_widget.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ui/resources/QSS/TeamDetailDataWidget.qss" beforeDir="false" afterPath="$PROJECT_DIR$/ui/resources/QSS/TeamDetailDataWidget.qss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ui/resources/QSS/TeamTable.qss" beforeDir="false" afterPath="$PROJECT_DIR$/ui/resources/QSS/TeamTable.qss" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ui/widgets/bottom_right_widget.py" beforeDir="false" afterPath="$PROJECT_DIR$/ui/widgets/bottom_right_widget.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ui/widgets/components/match_table.py" beforeDir="false" afterPath="$PROJECT_DIR$/ui/resources/QSS/RightPanel.qss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ui/widgets/components/player_table.py" beforeDir="false" afterPath="$PROJECT_DIR$/ui/resources/QSS/TeamMembershipTable.qss" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ui/widgets/components/team_table.py" beforeDir="false" afterPath="$PROJECT_DIR$/ui/widgets/components/team_table.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ui/widgets/team_detail_data_widget.py" beforeDir="false" afterPath="$PROJECT_DIR$/ui/widgets/team_detail_data_widget.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ui/widgets/team_management.py" beforeDir="false" afterPath="$PROJECT_DIR$/ui/widgets/team_management.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ui/widgets/top_right_widget.py" beforeDir="false" afterPath="$PROJECT_DIR$/ui/widgets/top_right_widget.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/utils/LoadQSS.py" beforeDir="false" afterPath="$PROJECT_DIR$/utils/LoadQSS.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/utils/application_init.py" beforeDir="false" afterPath="$PROJECT_DIR$/utils/application_init.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -52,28 +52,31 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "Python.app.executor": "Run",
-    "Python.bottom_right_widget.executor": "Run",
-    "Python.crawl.executor": "Run",
-    "Python.main_window.executor": "Run",
-    "Python.path1.executor": "Run",
-    "Python.sample_data.executor": "Run",
-    "Python.team_service.executor": "Run",
-    "Python.tree.executor": "Run",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "git-widget-placeholder": "main",
-    "last_opened_file_path": "D:/Python/Py311/Scripts/pyqt6-tools.exe",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "settings.editor.selected.configurable": "com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Python.app.executor&quot;: &quot;Run&quot;,
+    &quot;Python.application_init.executor&quot;: &quot;Run&quot;,
+    &quot;Python.bottom_right_widget.executor&quot;: &quot;Run&quot;,
+    &quot;Python.crawl.executor&quot;: &quot;Run&quot;,
+    &quot;Python.main_window.executor&quot;: &quot;Run&quot;,
+    &quot;Python.path1.executor&quot;: &quot;Run&quot;,
+    &quot;Python.sample_data.executor&quot;: &quot;Run&quot;,
+    &quot;Python.team_membership_table.executor&quot;: &quot;Run&quot;,
+    &quot;Python.team_service.executor&quot;: &quot;Run&quot;,
+    &quot;Python.team_table.executor&quot;: &quot;Run&quot;,
+    &quot;Python.tree.executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;last_opened_file_path&quot;: &quot;D:/Python/Py311/Scripts/pyqt6-tools.exe&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;configurable.group.editor&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="E:\Project\ACE_TMS\ui\resources\ICON" />
@@ -146,7 +149,7 @@
       <method v="2" />
     </configuration>
     <configuration name="app" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
-      <module name="lol_tournament" />
+      <module name="ACE_TMS" />
       <option name="ENV_FILES" value="" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -162,152 +165,14 @@
       <option name="SCRIPT_NAME" value="$PROJECT_DIR$/app.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
-      <option name="EMULATE_TERMINAL" value="true" />
-      <option name="MODULE_MODE" value="false" />
-      <option name="REDIRECT_INPUT" value="false" />
-      <option name="INPUT_FILE" value="" />
-      <method v="2" />
-    </configuration>
-    <configuration name="bottom_right_widget" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
-      <module name="lol_tournament" />
-      <option name="ENV_FILES" value="" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/ui/widgets" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/ui/widgets/bottom_right_widget.py" />
-      <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
       <option name="MODULE_MODE" value="false" />
       <option name="REDIRECT_INPUT" value="false" />
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
-    <configuration name="main_window" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
-      <module name="lol_tournament" />
-      <option name="ENV_FILES" value="" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/ui" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/ui/main_window.py" />
-      <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="false" />
-      <option name="EMULATE_TERMINAL" value="true" />
-      <option name="MODULE_MODE" value="false" />
-      <option name="REDIRECT_INPUT" value="false" />
-      <option name="INPUT_FILE" value="" />
-      <method v="2" />
-    </configuration>
-    <configuration name="path1" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
-      <module name="lol_tournament" />
-      <option name="ENV_FILES" value="" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/ui/resources/QSS" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/ui/resources/QSS/path1.py" />
-      <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="false" />
-      <option name="EMULATE_TERMINAL" value="false" />
-      <option name="MODULE_MODE" value="false" />
-      <option name="REDIRECT_INPUT" value="false" />
-      <option name="INPUT_FILE" value="" />
-      <method v="2" />
-    </configuration>
-    <configuration name="team_detail_data_widget" type="PythonConfigurationType" factoryName="Python" nameIsGenerated="true">
-      <module name="lol_tournament" />
-      <option name="ENV_FILES" value="" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/ui/widgets" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
-      <option name="SCRIPT_NAME" value="E:\Project\ACE_TMS\ui\widgets\team_detail_data_widget.py" />
-      <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="false" />
-      <option name="EMULATE_TERMINAL" value="true" />
-      <option name="MODULE_MODE" value="false" />
-      <option name="REDIRECT_INPUT" value="false" />
-      <option name="INPUT_FILE" value="" />
-      <method v="2" />
-    </configuration>
-    <configuration name="team_management" type="PythonConfigurationType" factoryName="Python" nameIsGenerated="true">
-      <module name="lol_tournament" />
-      <option name="ENV_FILES" value="" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/ui/widgets" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/ui/widgets/team_management.py" />
-      <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="false" />
-      <option name="EMULATE_TERMINAL" value="true" />
-      <option name="MODULE_MODE" value="false" />
-      <option name="REDIRECT_INPUT" value="false" />
-      <option name="INPUT_FILE" value="" />
-      <method v="2" />
-    </configuration>
-    <configuration name="team_table" type="PythonConfigurationType" factoryName="Python" nameIsGenerated="true">
-      <module name="lol_tournament" />
-      <option name="ENV_FILES" value="" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/ui/widgets/components" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/ui/widgets/components/team_table.py" />
-      <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="false" />
-      <option name="EMULATE_TERMINAL" value="true" />
-      <option name="MODULE_MODE" value="false" />
-      <option name="REDIRECT_INPUT" value="false" />
-      <option name="INPUT_FILE" value="" />
-      <method v="2" />
-    </configuration>
-    <configuration name="tree" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
-      <module name="lol_tournament" />
+    <configuration name="application_init" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="ACE_TMS" />
       <option name="ENV_FILES" value="" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -320,7 +185,7 @@
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/utils/tree.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/utils/application_init.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -429,10 +294,7 @@
     <recent_temporary>
       <list>
         <item itemvalue="Python.app" />
-        <item itemvalue="Python.bottom_right_widget" />
-        <item itemvalue="Python.path1" />
-        <item itemvalue="Python.tree" />
-        <item itemvalue="Python.main_window" />
+        <item itemvalue="Python.application_init" />
       </list>
     </recent_temporary>
   </component>
@@ -497,7 +359,19 @@
       <workItem from="1732992264975" duration="2000" />
       <workItem from="1732994652320" duration="7689000" />
       <workItem from="1733057903825" duration="9110000" />
-      <workItem from="1733098693836" duration="4246000" />
+      <workItem from="1733098693836" duration="4688000" />
+      <workItem from="1733147910578" duration="81000" />
+      <workItem from="1733148043091" duration="16000" />
+      <workItem from="1733148832475" duration="3898000" />
+      <workItem from="1733154522084" duration="3167000" />
+      <workItem from="1733159712217" duration="3488000" />
+      <workItem from="1733183904640" duration="13000" />
+      <workItem from="1733183975489" duration="731000" />
+      <workItem from="1733184716520" duration="131000" />
+      <workItem from="1733184853182" duration="16738000" />
+      <workItem from="1733225534227" duration="606000" />
+      <workItem from="1733274389470" duration="1901000" />
+      <workItem from="1733289056408" duration="69000" />
     </task>
     <servers />
   </component>
@@ -505,14 +379,19 @@
     <option name="version" value="3" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
-    <SUITE FILE_PATH="coverage/ACE_TMS$bottom_right_widget.coverage" NAME="bottom_right_widget 覆盖结果" MODIFIED="1732976513066" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/ui/widgets" />
-    <SUITE FILE_PATH="coverage/lol_tournament$crawl.coverage" NAME="crawl 覆盖结果" MODIFIED="1731754215012" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/utils" />
     <SUITE FILE_PATH="coverage/lol_tournament$tree.coverage" NAME="tree 覆盖结果" MODIFIED="1732166218955" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/utils" />
     <SUITE FILE_PATH="coverage/lol_tournament$app.coverage" NAME="app 覆盖结果" MODIFIED="1732099163612" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/ACE_TMS$app.coverage" NAME="app 覆盖结果" MODIFIED="1733146571576" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
-    <SUITE FILE_PATH="coverage/ACE_TMS$tree.coverage" NAME="tree 覆盖结果" MODIFIED="1732895311044" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/utils" />
     <SUITE FILE_PATH="coverage/ACE_TMS$path1.coverage" NAME="path1 覆盖结果" MODIFIED="1732895522447" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/ui/resources/QSS" />
+    <SUITE FILE_PATH="coverage/ACE_TMS$tree.coverage" NAME="tree 覆盖结果" MODIFIED="1732895311044" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/utils" />
+    <SUITE FILE_PATH="coverage/app_py$team_membership_table.coverage" NAME="team_membership_table 覆盖结果" MODIFIED="1733160488768" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/ui/widgets/components" />
     <SUITE FILE_PATH="coverage/ACE_TMS$team_service.coverage" NAME="team_service 覆盖结果" MODIFIED="1732212147116" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/services" />
+    <SUITE FILE_PATH="coverage/app_py$application_init.coverage" NAME="application_init 覆盖结果" MODIFIED="1733275597020" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/utils" />
+    <SUITE FILE_PATH="coverage/ACE_TMS$bottom_right_widget.coverage" NAME="bottom_right_widget 覆盖结果" MODIFIED="1732976513066" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/ui/widgets" />
+    <SUITE FILE_PATH="coverage/lol_tournament$crawl.coverage" NAME="crawl 覆盖结果" MODIFIED="1731754215012" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/utils" />
+    <SUITE FILE_PATH="coverage/app_py$app.coverage" NAME="app 覆盖结果" MODIFIED="1733289064292" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/app_py$team_table.coverage" NAME="team_table 覆盖结果" MODIFIED="1733152977349" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/ui/widgets/components" />
+    <SUITE FILE_PATH="coverage/app_py$main_window.coverage" NAME="main_window 覆盖结果" MODIFIED="1733153498264" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/ui" />
     <SUITE FILE_PATH="coverage/lol_tournament$sample_data.coverage" NAME="sample_data 覆盖结果" MODIFIED="1731755296394" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/data" />
     <SUITE FILE_PATH="coverage/ACE_TMS$main_window.coverage" NAME="main_window 覆盖结果" MODIFIED="1732848495941" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/ui" />
   </component>

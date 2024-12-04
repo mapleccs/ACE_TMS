@@ -1,0 +1,22 @@
+#match_records_table_view {
+    background-color: #f9f9f9;
+    border: 2px solid #cccccc;
+    border-radius: 8px;
+}
+
+/* 表格内容（单元格） */
+#match_records_table_view QTableView::item {
+    text-align: center;  /* 使文本水平居中 */
+    padding: 5px;
+    background-color: #E3EBF3;
+}
+
+/* 表头样式 */
+#match_records_table_view QHeaderView::section {
+    background-color: #45457E;   /* 表头背景色 */
+    border: 1px solid #b0b0b0;
+    padding: 5px;
+    font-weight: bold;
+    text-align: center;
+    color: #ffffff;
+}

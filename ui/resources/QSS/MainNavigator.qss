@@ -1,4 +1,4 @@
-#team_count_label {
+#team_label {
     color: #45457E;
     font-size: 22px;
     font-weight: bold;
@@ -93,4 +93,51 @@
     background-color: #f0f0f0;
     color: #a0a0a0;
     border: 2px solid #dcdcdc;
+}
+
+
+#team_button {
+    background-color: #f1f1f1;  /* 背景色 */
+    border: 2px solid #8e8e8e;  /* 边框颜色 */
+    border-radius: 5px;         /* 圆角 */
+    color: #333333;             /* 文字颜色 */
+    font-size: 14px;            /* 字体大小 */
+    padding: 8px 12px;          /* 内边距（上下左右） */
+    height: 15px;               /* 高度 */
+    text-align: center;         /* 文字居中 */
+}
+
+/* 鼠标悬停效果 */
+#team_button:hover {
+    background-color: #e0e0e0;  /* 鼠标悬停时背景颜色 */
+    border-color: #7f7f7f;      /* 鼠标悬停时边框颜色 */
+    color: #333333;             /* 鼠标悬停时文字颜色 */
+}
+
+/* 按钮按下时效果 */
+#team_button:pressed {
+    background-color: #d4d4d4;  /* 按钮被点击时背景颜色 */
+    border-color: #666666;      /* 按钮被点击时边框颜色 */
+}
+
+/* 按钮禁用状态样式 */
+#team_button:disabled {
+    background-color: #f0f0f0;  /* 禁用时的背景色 */
+    border-color: #d3d3d3;      /* 禁用时的边框颜色 */
+    color: #a0a0a0;             /* 禁用时的文字颜色 */
+}
+
+#team_detail_label {
+    color: #45457E;
+    font-size: 22px;
+    font-weight: bold;
+    width: 150px;       /* 控制标签宽度 */
+}
+
+#team_detail_widget {
+    padding: 10px;
+    background-color: #f9f9f9;
+    border-radius: 5px;
+    border: 2px solid #E3EBF3;
+    width: 500px;  /* 设置整个控件的宽度 */
 }

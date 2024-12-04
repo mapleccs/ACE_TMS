@@ -6,6 +6,9 @@ QSS_FILES = [
     'ui/resources/QSS/MainWindow.qss',
     'ui/resources/QSS/MainNavigator.qss',
     'ui/resources/QSS/TeamDetailDataWidget.qss',
+    'ui/resources/QSS/MatchRecordsTable.qss',
+    'ui/resources/QSS/TeamMembershipTable.qss',
+    'ui/resources/QSS/RightPanel.qss',
 ]
 
 

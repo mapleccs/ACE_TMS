@@ -1,0 +1,8 @@
+/* 样式设置 */
+#right_panel {
+    background-color: #E3EBF3;      /* 设置战队数据详情背景色 */
+}
+
+#team_detail_data_widget {
+    background-color: #E3EBF3;      /* 设置战队数据详情背景色 */
+}
