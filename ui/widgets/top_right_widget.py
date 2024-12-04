@@ -4,8 +4,9 @@ from PyQt6.QtWidgets import QWidget, QStackedWidget, QHBoxLayout, QLabel, QLineE
 
 class TopRightWidget(QWidget):
 
-    search_teams_signal = pyqtSignal(str)   # 定义一个信号，用于传递搜索关键词
-    sort_teams_signal = pyqtSignal(str)     # 添加一个信号，用于排序字段的变化
+    search_teams_signal = pyqtSignal(str)       # 定义一个信号，用于传递搜索关键词
+    sort_teams_signal = pyqtSignal(str)         # 添加一个信号，用于排序字段的变化
+    team_selection_signal = pyqtSignal(str)     # 添加一个信号，用于传递队伍选择字段
 
     def __init__(self):
         super().__init__()
@@ -100,6 +101,7 @@ class TopRightWidget(QWidget):
         # 连接信号
         self.team_search_input.textChanged.connect(self.emit_search_signal)
         self.sort_combo.currentIndexChanged.connect(self.emit_sort_signal)
+        self.team_detail_combo.currentIndexChanged.connect(self.emit_team_selection_signal)
 
         # 连接按钮点击信号
         self.team_detail_modify_button.clicked.connect(self.enter_edit_mode)
@@ -115,6 +117,11 @@ class TopRightWidget(QWidget):
         """发射信号，将选择的排序字段传递出去"""
         sort_criteria = self.sort_combo.currentText()
         self.sort_teams_signal.emit(sort_criteria)
+
+    def emit_team_selection_signal(self):
+        """发射信号，将选择的队伍名称字段传递出去"""
+        team_selection = self.team_detail_combo.currentText()
+        self.team_selection_signal.emit(team_selection)
 
     def show_home_page(self):
         """切换到空白界面"""
@@ -160,3 +167,6 @@ class TopRightWidget(QWidget):
 
         # 退出编辑模式
         self.exit_edit_mode()
+
+    def set_team_detail_combo_text(self, TeamName: str):
+        self.team_detail_combo.setCurrentText(TeamName)
