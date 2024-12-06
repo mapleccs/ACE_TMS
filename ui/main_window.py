@@ -87,6 +87,8 @@ class MainWindow(QMainWindow):
         # 点击"team_table"中的队伍配置，改变"战队详情" -> "导航栏" -> 点击"队伍选择"下拉框的队伍名称
         self.right_bottom_widget.team_management_widget.team_table.team_selected.connect(self.right_top_widget.set_team_detail_combo_text)
 
+        self.right_top_widget.team_detail_modify_button.clicked.connect(self.on_modify_clicked)
+
     def show_home_page(self):
         """切换到欢迎页面"""
         self.right_bottom_widget.right_panel.setCurrentWidget(self.right_bottom_widget.home_page_label)
@@ -103,3 +105,7 @@ class MainWindow(QMainWindow):
         """应用样式表"""
         # 调用 LoadQSS.py 中的 apply_stylesheets 函数
         apply_stylesheets(self)
+
+    def on_modify_clicked(self):
+        # 发射自定义信号或直接调用主面板的槽函数
+        self.right_bottom_widget.team_detail_data_widget.show_player_registration()

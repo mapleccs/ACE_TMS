@@ -2,9 +2,13 @@ import sys
 from PyQt6.QtWidgets import QApplication
 from ui.main_window import MainWindow
 from utils.db_utils import init_db
+from utils.logger import logger  # 导入日志记录器
 
 
 def main():
+    # 记录应用程序启动
+    logger.info("应用程序启动")
+
     # 创建 QApplication 实例
     app = QApplication(sys.argv)
 
@@ -15,8 +19,12 @@ def main():
     window = MainWindow()
     window.show()
 
-    # 进入事件循环
-    sys.exit(app.exec())
+    # 捕获异常并记录
+    try:
+        # 进入事件循环
+        sys.exit(app.exec())
+    except Exception as e:
+        logger.exception("应用程序异常退出")
 
 
 if __name__ == '__main__':

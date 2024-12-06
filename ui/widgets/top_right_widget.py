@@ -10,7 +10,7 @@ class TopRightWidget(QWidget):
 
     def __init__(self):
         super().__init__()
-
+        self._updating_combo = False  # 添加标志位
         self.right_top_panel = QStackedWidget()
 
         # 创建home开始空白页面
@@ -119,7 +119,8 @@ class TopRightWidget(QWidget):
         self.sort_teams_signal.emit(sort_criteria)
 
     def emit_team_selection_signal(self):
-        """发射信号，将选择的队伍名称字段传递出去"""
+        if self._updating_combo:
+            return
         team_selection = self.team_detail_combo.currentText()
         self.team_selection_signal.emit(team_selection)
 
@@ -162,11 +163,13 @@ class TopRightWidget(QWidget):
         # 在这里添加保存修改的逻辑
         # 例如，获取 ComboBox 的当前值并更新数据源
         selected_team = self.team_detail_combo.currentText()
-        print(f"保存修改：{selected_team}")
         # 你可以在这里添加更多逻辑，比如更新数据库或模型
 
         # 退出编辑模式
         self.exit_edit_mode()
 
     def set_team_detail_combo_text(self, TeamName: str):
-        self.team_detail_combo.setCurrentText(TeamName)
+        if self.team_detail_combo.currentText() != TeamName:
+            self._updating_combo = True
+            self.team_detail_combo.setCurrentText(TeamName)
+            self._updating_combo = False
