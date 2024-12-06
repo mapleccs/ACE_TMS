@@ -39,20 +39,35 @@ class TeamMembershipWidget(QWidget):
         self.long_text_label.setObjectName("long_text_label")
         grid_layout.addWidget(self.long_text_label, 1, 1, 1, 3)
 
-        # 其他标签
-        labels = [
-            ("对局数量：{0}".format(team_data.get("对局数量")), 2, 0),
-            ("对局胜率：{0}".format(team_data.get("胜率")), 2, 1),
-            ("队伍积分：{0}分".format(team_data.get("积分")), 2, 2),
-            ("队伍评级：{0}级".format(team_data.get("等级")), 2, 3),
-            ("联系方式1：{0}".format(team_data.get("联系方式1")), 3, 0, 1, 2),
-            ("联系方式2：{0}".format(team_data.get("联系方式2")), 3, 2, 1, 2)
-        ]
+        # 对局数量
+        self.match_count_label = QLabel("对局数量{0}".format(team_data.get("对局数量")), self)
+        self.match_count_label.setObjectName("short_label")
+        grid_layout.addWidget(self.match_count_label, 2, 0)
 
-        for label_text, row, col, *span in labels:
-            label = QLabel(label_text, self)
-            label.setObjectName("short_label" if "联系方式" not in label_text else "long_label")
-            grid_layout.addWidget(label, row, col, *(span if span else (1, 1)))
+        # 对局胜率
+        self.win_rate_label = QLabel("对局胜率：{0}".format(team_data.get("胜率")), self)
+        self.win_rate_label.setObjectName("short_label")
+        grid_layout.addWidget(self.win_rate_label, 2, 1)
+
+        # 队伍积分
+        self.team_score_label = QLabel("队伍积分：{0}分".format(team_data.get("积分")), self)
+        self.team_score_label.setObjectName("short_label")
+        grid_layout.addWidget(self.team_score_label, 2, 2)
+
+        # 队伍评级 Label
+        self.team_rating_label = QLabel("队伍评级：{0}级".format(team_data.get("等级")), self)
+        self.team_rating_label.setObjectName("short_label")
+        grid_layout.addWidget(self.team_rating_label, 2, 3)
+
+        # 联系方式1 Label
+        self.contact1_label = QLabel("联系方式1：{0}".format(team_data.get("联系方式1")), self)
+        self.contact1_label.setObjectName("long_label")
+        grid_layout.addWidget(self.contact1_label, 3, 0, 1, 2)  # 跨2列
+
+        # 联系方式2 Label
+        self.contact2_label = QLabel("联系方式2：{0}".format(team_data.get("联系方式2")), self)
+        self.contact2_label.setObjectName("long_label")
+        grid_layout.addWidget(self.contact2_label, 3, 2, 1, 2)  # 跨2列
 
         # 队伍成员表格
         self.team_membership_table = TeamMembershipTableView(self)
@@ -66,5 +81,11 @@ class TeamMembershipWidget(QWidget):
         self.long_text_label.setText(
             f"成员数量: {team_data.get('成员数量')} 建队时间: {team_data.get('建队日期')}"
         )
+        self.match_count_label.setText("对局数量：{0}".format(team_data.get("对局数量")))
+        self.win_rate_label.setText("对局胜率：{0}".format(team_data.get("胜率")))
+        self.team_score_label.setText("队伍积分：{0}分".format(team_data.get("积分")))
+        self.team_rating_label.setText("队伍评级：{0}级".format(team_data.get("等级")))
+        self.contact1_label.setText("联系方式1：{0}".format(team_data.get("联系方式1")))
+        self.contact2_label.setText("联系方式2：{0}".format(team_data.get("联系方式2")))
         # 更新其他标签...
         self.membership_model.set_data(team_data.get("队员信息", []))

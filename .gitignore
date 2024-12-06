@@ -12,6 +12,9 @@ logs/
 
 # 忽略其他不需要上传的文件
 *.log
+*.xmind
+*.xd
+GUI设计.png
 
 # 忽略测试文件
 test/
