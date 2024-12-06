@@ -1,5 +1,5 @@
 from PyQt6.QtWidgets import QWidget, QVBoxLayout
-from ui.widgets.components.match_records_table import MatchRecordsTableView, MatchRecordsTableModel
+from ui.widgets.components.team_detail_data_widget_components.match_records_table import MatchRecordsTableView, MatchRecordsTableModel
 
 
 class MatchRecordsWidget(QWidget):

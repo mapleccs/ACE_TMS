@@ -1,7 +1,7 @@
 import os
 from PyQt6.QtWidgets import QWidget, QVBoxLayout, QSplitter, QStackedWidget, QMessageBox
 from PyQt6.QtCore import Qt
-from ui.widgets.components.team_detail_data_widget_components.data_manager import DataManager
+from utils.data_manager import DataManager
 from ui.widgets.components.team_detail_data_widget_components.team_membership_widget import TeamMembershipWidget
 from ui.widgets.components.team_detail_data_widget_components.team_honor_widget import TeamHonorWidget
 from ui.widgets.components.team_detail_data_widget_components.match_records_widget import MatchRecordsWidget

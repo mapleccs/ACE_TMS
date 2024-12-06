@@ -1,7 +1,8 @@
 from PyQt6.QtWidgets import QWidget, QGridLayout, QLabel
 from PyQt6.QtGui import QPixmap
 from PyQt6.QtCore import Qt
-from ui.widgets.components.team_membership_table import TeamMembershipTableView, TeamMembershipTableModel
+from ui.widgets.components.team_detail_data_widget_components.team_membership_table import TeamMembershipTableView, TeamMembershipTableModel
+from utils.logger import logger
 
 
 class TeamMembershipWidget(QWidget):
@@ -15,7 +16,7 @@ class TeamMembershipWidget(QWidget):
 
         # 队伍图标
         self.team_icon = QLabel(self)
-        pixmap = QPixmap(r"ui\GUI设计.png")  # 替换为你的图片路径
+        pixmap = QPixmap(r"ui\resources\ICON\队标测试.png")  # 替换为你的图片路径
         self.team_icon.setPixmap(pixmap.scaled(100, 100, Qt.AspectRatioMode.KeepAspectRatio))
         grid_layout.addWidget(self.team_icon, 0, 0, 2, 1)
 

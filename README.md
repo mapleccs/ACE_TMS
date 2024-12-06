@@ -35,8 +35,6 @@
 │   ├── widgets/             # 界面小部件
 │       ├── __init__.py
 │       ├── team_management.py
-│       ├── player_management.py
-│       ├── match_management.py
 │       └── ...（其他小部件）
 │   ├── QSS/                 # 样式表文件
 │       ├── dark_theme.qss

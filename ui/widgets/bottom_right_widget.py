@@ -1,8 +1,6 @@
 from PyQt6.QtCore import Qt
 from PyQt6.QtWidgets import QWidget, QVBoxLayout, QLabel, QStackedWidget
 from ui.widgets.team_management import TeamManagementWidget
-from ui.widgets.match_management import MatchManagementWidget
-from ui.widgets.player_management import PlayerManagementWidget
 from ui.widgets.team_detail_data_widget import TeamDetailDataWidget
 from utils.logger import logger
 from utils.data_loader import TeamDetailDataLoaderThread
@@ -48,18 +46,10 @@ class BottomRightWidget(QWidget):
         self.team_detail_data_widget = TeamDetailDataWidget()
         self.team_detail_data_widget.setObjectName('team_detail_data_widget')  # 设置战队数据详情页面名称
 
-        self.match_management_widget = MatchManagementWidget()
-        self.match_management_widget.setObjectName('match_management_widget')  # 设置比赛管理页面名称
-
-        self.player_management_widget = PlayerManagementWidget()
-        self.player_management_widget.setObjectName('player_management_widget')  # 设置球员管理页面名称
-
         # 添加页面到 QStackedWidget
         self.right_panel.addWidget(self.home_page_label)
         self.right_panel.addWidget(self.team_management_widget)
         self.right_panel.addWidget(self.team_detail_data_widget)
-        self.right_panel.addWidget(self.match_management_widget)
-        self.right_panel.addWidget(self.player_management_widget)
 
         # 设置布局
         layout = QVBoxLayout()
@@ -84,16 +74,6 @@ class BottomRightWidget(QWidget):
     def switch_to_team_detail_data(self):
         """切换到战队数据详情页面"""
         self.right_panel.setCurrentWidget(self.team_detail_data_widget)
-
-    @safe_slot
-    def switch_to_match_management(self):
-        """切换到比赛管理页面"""
-        self.right_panel.setCurrentWidget(self.match_management_widget)
-
-    @safe_slot
-    def switch_to_player_management(self):
-        """切换到球员管理页面"""
-        self.right_panel.setCurrentWidget(self.player_management_widget)
 
     @safe_slot
     def safe_show_team_detail_page(self):

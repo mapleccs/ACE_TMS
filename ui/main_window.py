@@ -7,6 +7,7 @@ from ui.widgets.bottom_left_widget import BottomLeftWidget
 from ui.widgets.bottom_right_widget import BottomRightWidget
 from utils.LoadQSS import apply_stylesheets
 from utils.logger import logger
+from utils.data_manager import DataManager
 
 
 def safe_slot(func):

@@ -1,84 +1,57 @@
 from PyQt6.QtCore import pyqtSignal
 from PyQt6.QtWidgets import QWidget, QStackedWidget, QHBoxLayout, QLabel, QLineEdit, QVBoxLayout, QComboBox, QPushButton
+from utils.logger import logger
+
+
+def safe_slot(func):
+    """装饰器，用于捕获槽函数中的异常并记录日志"""
+
+    def wrapper(*args, **kwargs):
+        try:
+            func(*args, **kwargs)
+        except Exception as e:
+            logger.exception(f"槽函数 {func.__name__} 发生异常: {e}")
+
+    return wrapper
 
 
 class TopRightWidget(QWidget):
+    """
+    右上侧导航栏小部件。
 
-    search_teams_signal = pyqtSignal(str)       # 定义一个信号，用于传递搜索关键词
-    sort_teams_signal = pyqtSignal(str)         # 添加一个信号，用于排序字段的变化
-    team_selection_signal = pyqtSignal(str)     # 添加一个信号，用于传递队伍选择字段
+    提供主界面空白页、战队数据搜索栏、战队详情导航栏和其他页面的切换功能。
+    发射多个信号：search_teams_signal、sort_teams_signal、team_selection_signal，
+    用于上层逻辑对战队数据进行搜索、排序和选择。
+    """
+
+    search_teams_signal = pyqtSignal(str)  # 传递搜索关键词
+    sort_teams_signal = pyqtSignal(str)  # 传递排序字段变化
+    team_selection_signal = pyqtSignal(str)  # 传递队伍选择字段
 
     def __init__(self):
         super().__init__()
-        self._updating_combo = False  # 添加标志位
+        logger.info("初始化 TopRightWidget")
+        self._updating_combo = False  # 标志位，用于防止重复触发队伍选择信号
+        self.init_ui()
+        self.connect_signals()
+
+    def init_ui(self):
+        """初始化UI和子页面组件。"""
         self.right_top_panel = QStackedWidget()
 
-        # 创建home开始空白页面
+        # 创建home空白页面
         self.home_page_widget = QWidget()
         home_page_layout = QVBoxLayout()
         home_page_layout.addWidget(QLabel())
         self.home_page_widget.setLayout(home_page_layout)
 
-        # -----------------------------> 创建战队数据搜索栏导航栏 <----------------------------------
-        self.team_search_widget = QWidget()
-        team_count_layout = QHBoxLayout()
-        self.team_count_label = QLabel("战队数据总览")
-        self.team_count_label.setObjectName("team_label")
-        self.team_search_input = QLineEdit()
-        self.team_search_input.setObjectName("team_search_input")
-        self.team_search_input.setPlaceholderText("检索：队伍名称")
-        self.sort_combo = QComboBox()
-        self.sort_combo.addItem("排序方式：积分")
-        self.sort_combo.addItem("排序方式：日期")
-        self.sort_combo.addItem("排序方式：队名")
-        self.sort_combo.addItem("排序方式：人数")
-        self.sort_combo.setObjectName("sort_combo")
-        team_count_layout.addWidget(self.team_count_label)
-        team_count_layout.addWidget(self.sort_combo)
-        team_count_layout.addWidget(self.team_search_input)
-        self.team_search_widget.setLayout(team_count_layout)
+        # 战队数据搜索导航栏
+        self.team_search_widget = self.create_team_search_widget()
 
-        # -----------------------------> 创建战队管理导航栏 <----------------------------------
-        self.team_detail_widget = QWidget()
-        self.team_detail_label = QLabel("战队详情")
-        self.team_detail_label.setObjectName("team_detail_label")
-        self.team_detail_combo = QComboBox()
-        self.team_detail_combo.addItem("CB")
-        self.team_detail_combo.addItem("SSW")
-        self.team_detail_combo.addItem("QT")
-        self.team_detail_combo.addItem("DF")
-        self.team_detail_combo.setObjectName("sort_combo")
-        self.team_detail_modify_button = QPushButton("修改信息")
-        self.team_detail_modify_button.setObjectName("team_button")
+        # 战队详情导航栏
+        self.team_detail_widget = self.create_team_detail_widget()
 
-        # 创建“取消修改”和“保存修改”按钮，但初始时隐藏
-        self.team_detail_cancel_button = QPushButton("取消修改")
-        self.team_detail_cancel_button.setObjectName("team_button")
-        self.team_detail_save_button = QPushButton("保存修改")
-        self.team_detail_save_button.setObjectName("team_button")
-
-        team_detail_layout = QHBoxLayout()
-        team_detail_layout.setObjectName("team_detail_layout")
-        team_detail_layout.addWidget(self.team_detail_label)
-        team_detail_layout.addWidget(self.team_detail_combo)
-        team_detail_layout.addWidget(self.team_detail_modify_button)
-        team_detail_layout.addWidget(self.team_detail_cancel_button)
-        team_detail_layout.addWidget(self.team_detail_save_button)
-
-        # 设置按钮的初始可见性
-        self.team_detail_cancel_button.hide()
-        self.team_detail_save_button.hide()
-
-        # 设置各控件在布局中的占比
-        team_detail_layout.setStretch(0, 1)  # 控件 0（team_detail_label）占1份空间
-        team_detail_layout.setStretch(1, 3)  # 控件 1（team_detail_combo）占3份空间
-        team_detail_layout.setStretch(2, 1)  # 控件 2（team_detail_modify_button）占1份空间
-        team_detail_layout.setStretch(3, 1)  # 控件 3（team_detail_cancel_button）占1份空间
-        team_detail_layout.setStretch(4, 1)  # 控件 4（team_detail_save_button）占1份空间
-
-        self.team_detail_widget.setLayout(team_detail_layout)
-
-        # 创建其它页面（例如对局数据搜索界面等）
+        # 其他页面（示例）
         self.other_widget = QWidget()
         other_layout = QVBoxLayout()
         other_layout.addWidget(QLabel("其他功能"))
@@ -93,82 +66,147 @@ class TopRightWidget(QWidget):
         # 默认显示home空白界面
         self.right_top_panel.setCurrentWidget(self.home_page_widget)
 
-        right_top_layout = QVBoxLayout()
-        right_top_layout.addWidget(self.right_top_panel)
+        layout = QVBoxLayout()
+        layout.addWidget(self.right_top_panel)
+        self.setLayout(layout)
 
-        self.setLayout(right_top_layout)
+    def create_team_search_widget(self):
+        """创建战队数据搜索导航栏页面。"""
+        widget = QWidget()
+        layout = QHBoxLayout()
+        self.team_count_label = QLabel("战队数据总览")
+        self.team_count_label.setObjectName("team_label")
 
-        # 连接信号
+        self.team_search_input = QLineEdit()
+        self.team_search_input.setObjectName("team_search_input")
+        self.team_search_input.setPlaceholderText("检索：队伍名称")
+
+        self.sort_combo = QComboBox()
+        self.sort_combo.addItem("排序方式：积分")
+        self.sort_combo.addItem("排序方式：日期")
+        self.sort_combo.addItem("排序方式：队名")
+        self.sort_combo.addItem("排序方式：人数")
+        self.sort_combo.setObjectName("sort_combo")
+
+        layout.addWidget(self.team_count_label)
+        layout.addWidget(self.sort_combo)
+        layout.addWidget(self.team_search_input)
+        widget.setLayout(layout)
+        return widget
+
+    def create_team_detail_widget(self):
+        """创建战队详情导航栏页面。"""
+        widget = QWidget()
+        layout = QHBoxLayout()
+        layout.setObjectName("team_detail_layout")
+
+        self.team_detail_label = QLabel("战队详情")
+        self.team_detail_label.setObjectName("team_detail_label")
+
+        self.team_detail_combo = QComboBox()
+        for team_name in ["CB", "SSW", "QT", "DF"]:
+            self.team_detail_combo.addItem(team_name)
+        self.team_detail_combo.setObjectName("sort_combo")
+
+        self.team_detail_modify_button = QPushButton("修改信息")
+        self.team_detail_modify_button.setObjectName("team_button")
+
+        self.team_detail_cancel_button = QPushButton("取消修改")
+        self.team_detail_cancel_button.setObjectName("team_button")
+
+        self.team_detail_save_button = QPushButton("保存修改")
+        self.team_detail_save_button.setObjectName("team_button")
+
+        # 初始隐藏取消和保存按钮
+        self.team_detail_cancel_button.hide()
+        self.team_detail_save_button.hide()
+
+        layout.addWidget(self.team_detail_label)
+        layout.addWidget(self.team_detail_combo)
+        layout.addWidget(self.team_detail_modify_button)
+        layout.addWidget(self.team_detail_cancel_button)
+        layout.addWidget(self.team_detail_save_button)
+
+        # 调整布局比例
+        layout.setStretch(0, 1)
+        layout.setStretch(1, 3)
+        layout.setStretch(2, 1)
+        layout.setStretch(3, 1)
+        layout.setStretch(4, 1)
+
+        widget.setLayout(layout)
+        return widget
+
+    def connect_signals(self):
+        """连接信号与槽函数。"""
         self.team_search_input.textChanged.connect(self.emit_search_signal)
         self.sort_combo.currentIndexChanged.connect(self.emit_sort_signal)
         self.team_detail_combo.currentIndexChanged.connect(self.emit_team_selection_signal)
 
-        # 连接按钮点击信号
         self.team_detail_modify_button.clicked.connect(self.enter_edit_mode)
         self.team_detail_cancel_button.clicked.connect(self.exit_edit_mode)
         self.team_detail_save_button.clicked.connect(self.save_changes)
 
-    def emit_search_signal(self):
-        """发射信号，将搜索框中的内容传递出去"""
+    @safe_slot
+    def emit_search_signal(self, *args, **kwargs):
+        """发射搜索队伍信号。"""
         search_text = self.team_search_input.text()
         self.search_teams_signal.emit(search_text)
 
-    def emit_sort_signal(self):
-        """发射信号，将选择的排序字段传递出去"""
+    @safe_slot
+    def emit_sort_signal(self, *args, **kwargs):
+        """发射排序方式信号。"""
         sort_criteria = self.sort_combo.currentText()
         self.sort_teams_signal.emit(sort_criteria)
 
-    def emit_team_selection_signal(self):
+    @safe_slot
+    def emit_team_selection_signal(self, *args, **kwargs):
+        """发射队伍选择信号。"""
         if self._updating_combo:
             return
         team_selection = self.team_detail_combo.currentText()
         self.team_selection_signal.emit(team_selection)
 
     def show_home_page(self):
-        """切换到空白界面"""
+        """切换到首页空白界面。"""
         self.right_top_panel.setCurrentWidget(self.home_page_widget)
 
     def show_team_search_page(self):
-        """切换到战队数据搜索导航栏"""
+        """切换到战队数据搜索导航栏。"""
         self.right_top_panel.setCurrentWidget(self.team_search_widget)
 
     def show_team_detail_page(self):
-        """切换到战队详情导航栏"""
+        """切换到战队详情导航栏。"""
         self.right_top_panel.setCurrentWidget(self.team_detail_widget)
 
-    def enter_edit_mode(self):
-        """进入编辑模式，显示取消和保存按钮，隐藏修改按钮"""
+    @safe_slot
+    def enter_edit_mode(self, *args, **kwargs):
+        """进入编辑模式，显示取消和保存按钮，并隐藏修改按钮。"""
         self.team_detail_modify_button.hide()
         self.team_detail_cancel_button.show()
         self.team_detail_save_button.show()
-
-        # 你可以在这里启用编辑功能，例如允许修改 ComboBox 或其他控件
+        # 启用编辑
         self.team_detail_combo.setEnabled(True)
 
-    def exit_edit_mode(self):
-        """退出编辑模式，隐藏取消和保存按钮，显示修改按钮"""
+    @safe_slot
+    def exit_edit_mode(self, *args, **kwargs):
+        """退出编辑模式，恢复初始状态。"""
         self.team_detail_modify_button.show()
         self.team_detail_cancel_button.hide()
         self.team_detail_save_button.hide()
-
-        # 取消编辑，恢复原始状态
         # self.team_detail_combo.setEnabled(False)
-
-        # 如果需要，可以重置 ComboBox 的选择或其他控件的状态
-        # 例如，重新加载数据或清除输入
+        # 如果需要，重置状态
         # self.team_detail_combo.setCurrentIndex(0)
 
-    def save_changes(self):
-        """保存修改，执行相应的操作，然后退出编辑模式"""
-        # 在这里添加保存修改的逻辑
-        # 例如，获取 ComboBox 的当前值并更新数据源
+    @safe_slot
+    def save_changes(self, *args, **kwargs):
+        """保存修改并退出编辑模式。"""
         selected_team = self.team_detail_combo.currentText()
-        # 你可以在这里添加更多逻辑，比如更新数据库或模型
-
-        # 退出编辑模式
+        # 在此添加保存逻辑，如更新数据库或模型
         self.exit_edit_mode()
 
     def set_team_detail_combo_text(self, TeamName: str):
+        """外部调用，用于更新队伍选择下拉框的文本。"""
         if self.team_detail_combo.currentText() != TeamName:
             self._updating_combo = True
             self.team_detail_combo.setCurrentText(TeamName)
