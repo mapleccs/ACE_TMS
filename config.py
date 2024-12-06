@@ -1,9 +1,9 @@
 from urllib.parse import quote_plus
 
-USERNAME = 'ACE'
-PASSWORD = 'ace@best#'
-HOST = '47.113.177.195'
-DATABASE = 'ACE_db'
+USERNAME = '虚拟的'
+PASSWORD = '虚拟的'
+HOST = '127.0.0.1'
+DATABASE = '虚拟的'
 
 # 对密码进行 URL 编码
 encoded_password = quote_plus(PASSWORD)
