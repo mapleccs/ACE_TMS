@@ -1,4 +1,14 @@
+# 忽略 Python 缓存文件
+__pycache__/
+*.pyc
+*.pyo
 
-repositories/test.py
-/.idea
+# 忽略日志文件
+logs/
 
+# 忽略 IDE 配置文件
+.vscode/
+.idea/
+
+# 忽略其他不需要上传的文件
+*.log
