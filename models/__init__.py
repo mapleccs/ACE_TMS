@@ -11,4 +11,5 @@ from .system_config import SystemConfig
 from .team import Team
 from .team_member_role_change_record import TeamMemberRoleChangeRecord
 from .team_player import TeamPlayer
+from .matchType import MatchType
 from .team_season_score import TeamSeasonScore

@@ -11,6 +11,7 @@ class Player(Base):
     InGameName = Column(String(50), nullable=True)
     PreferredRoles = Column(String(100), nullable=True)
     QQ = Column(String(50), nullable=False)
+    Phone = Column(String(50), nullable=True)
 
     created_teams = relationship('Team', back_populates='creator')
     matches_stats = relationship('PlayerMatchStats', back_populates='player', cascade="all, delete-orphan")
