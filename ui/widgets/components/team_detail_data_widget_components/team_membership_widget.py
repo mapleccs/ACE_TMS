@@ -2,7 +2,6 @@ from PyQt6.QtWidgets import QWidget, QGridLayout, QLabel
 from PyQt6.QtGui import QPixmap
 from PyQt6.QtCore import Qt
 from ui.widgets.components.team_detail_data_widget_components.team_membership_table import TeamMembershipTableView, TeamMembershipTableModel
-from utils.logger import logger
 
 
 class TeamMembershipWidget(QWidget):
