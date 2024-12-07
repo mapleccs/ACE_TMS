@@ -44,7 +44,6 @@ class TeamPlayerRepository:
         player = aliased(Player)
         player_reason_score = aliased(PlayerReasonScore)
 
-
         query = self.session.query(
             player.ID,
             player.PlayerName,
@@ -59,7 +58,6 @@ class TeamPlayerRepository:
         ).filter(
             team_player.TeamID == team_id,
         )
-
 
         result = query.all()
 

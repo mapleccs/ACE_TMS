@@ -1,7 +1,7 @@
 from sqlalchemy import func, case, desc, cast, Integer
 from sqlalchemy.sql.functions import current_date
 
-from models import Team, Player, TeamPlayer, TeamSeasonScore
+from models import Team, Player, TeamPlayer, TeamSeasonScore, Match
 from sqlalchemy.orm import Session, joinedload, aliased
 
 
@@ -59,18 +59,37 @@ class TeamRepository:
             (all_team_player.EndDate.is_(None)) | (func.current_date() < all_team_player.EndDate)
         ).group_by(all_team_player.TeamID).subquery()
 
-        # 通过使用 with_entities 显式定义返回列，避免重复的
+        # 获取大局对局数量
+        matches_count = self.session.query(
+            Team.ID.label('team_id'),
+            func.count(func.distinct(Match.MatchDate)).label('matchCount')  # 根据比赛日期去重
+        ).join(Match, (Match.HomeTeamID == Team.ID) | (Match.AwayTeamID == Team.ID)) \
+            .group_by(Team.ID).subquery()
+
+        # 获取每支队伍在大比赛中的获胜数量
+        winner_matches_count = self.session.query(
+            Team.ID.label('team_id'),
+            func.count(func.distinct(Match.MatchDate)).label('winner_count')  # 根据比赛日期去重
+        ).join(Match, (Match.HomeTeamID == Team.ID) | (Match.AwayTeamID == Team.ID)) \
+            .filter(Match.WinnerTeamID == Team.ID) \
+            .group_by(Team.ID).subquery()
+
+        # 整合数据
         query = self.session.query(
+            func.coalesce(team.TeamLogo, "未设置队标").label('teamLogo'),
             team.TeamName,
             team.TeamAbbreviation,
             func.coalesce(team_leader.ID, 0).label('CaptainID'),
             func.coalesce(team_leader.PlayerName, '未设置队长').label('CaptainName'),
             func.coalesce(team_leader.QQ, '未设置队长').label('CaptainQQ'),
+            func.coalesce(team_leader.Phone, '未设置手机号').label('CaptainPhone'),
             func.coalesce(all_team_count.c.teamNum, 0).label('teamNum'),
             team.CreateDate,
             func.coalesce(team_season_score.TotalScore, 0).label('TotalScore'),
             func.coalesce(team_season_score.Level, "无等级").label('Level'),
-            func.coalesce(all_team_count.c.hasLeader, 0).label('hasLeader')
+            func.coalesce(all_team_count.c.hasLeader, 0).label('hasLeader'),
+            func.coalesce(matches_count.c.matchCount, 0).label('matchCount'),
+            func.coalesce(winner_matches_count.c.winner_count, 0).label('winner_count')
         ).select_from(team)
 
         # 使用左连接，确保即使没有队员数据也能返回队伍信息
@@ -82,8 +101,11 @@ class TeamRepository:
             team_season_score, team.ID == team_season_score.TeamID
         ).outerjoin(
             all_team_count, all_team_count.c.TeamID == team.ID
+        ).outerjoin(
+            matches_count, matches_count.c.team_id == team.ID
+        ).outerjoin(
+            winner_matches_count, winner_matches_count.c.team_id == team.ID
         )
-
 
         # 添加 JobType 的过滤条件，只有当队员存在且有队长时才应用
         query = query.filter(
@@ -93,13 +115,13 @@ class TeamRepository:
             )
         )
 
-
+        # 添加过滤条件，根据名称或者简称进行过滤
         if team_name:
             query = query.filter(team.TeamName.like(f'%{team_name}%'))
         if team_abbreviation:
             query = query.filter(team.TeamAbbreviation.like(f'%{team_abbreviation}%'))
 
-        # 排序 根据总积分排序
+        # 排序 根据总积分排序 整合返回值
         query = query.with_entities(
             team.TeamName,
             team.TeamAbbreviation,
@@ -109,6 +131,10 @@ class TeamRepository:
             team.CreateDate,
             func.coalesce(team_season_score.TotalScore, 0).label('totalScore'),
             func.coalesce(team_season_score.Level, "无等级").label('level'),
+            func.coalesce(team.TeamLogo, "未设置队标").label('teamLogo'),
+            func.coalesce(team_leader.Phone, '未设置手机号').label('CaptainPhone'),
+            func.coalesce(matches_count.c.matchCount, 0).label('matchCount'),
+            func.coalesce(winner_matches_count.c.winner_count, 0).label('winner_count')
         ).order_by(
             desc(team_season_score.TotalScore)
         )
@@ -124,7 +150,11 @@ class TeamRepository:
                 'teamNum': row[4],
                 'createDate': row[5],
                 'totalScore': row[6],
-                'level': row[7]
+                'level': row[7],
+                'teamLogo': row[8],
+                'captainPhone': row[9],
+                'matchCount': row[10],
+                'winnerCount': row[11]
             }
             for row in result
         ]
