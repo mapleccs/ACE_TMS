@@ -33,9 +33,7 @@ class TeamDataLoaderThread(BaseDataLoaderThread):
                 raise ConnectionError("无法获取数据库会话")
 
             team_service = TeamService(session)
-            logger.info("AAAAA")
             teams = team_service.get_all_teams()
-            logger.info("BBBBB")
 
             if not isinstance(teams, list):
                 raise ValueError("获取的团队数据格式不正确")

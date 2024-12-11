@@ -1,7 +1,7 @@
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
 from models import Base  # 导入 Base
-import config
+from utils import config
 
 engine = create_engine(config.DATABASE_URI)  # echo=True 可以在控制台输出 SQL 语句，方便调试
 Session = sessionmaker(bind=engine)
