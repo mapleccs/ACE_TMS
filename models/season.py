@@ -3,6 +3,7 @@ from sqlalchemy.orm import relationship
 from .base import Base
 import datetime
 
+
 class Season(Base):
     __tablename__ = 'season'
 

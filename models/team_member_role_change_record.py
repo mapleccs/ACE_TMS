@@ -1,5 +1,6 @@
-from sqlalchemy import Column, Integer, ForeignKey,DateTime, String
+from sqlalchemy import Column, Integer, ForeignKey, DateTime, String
 from .base import Base
+
 
 class TeamMemberRoleChangeRecord(Base):
     __tablename__ = 'teamMemberRoleChangeRecord'

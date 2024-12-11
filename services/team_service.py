@@ -2,6 +2,7 @@ from repositories.team_player_repository import TeamPlayerRepository
 from repositories.team_repository import TeamRepository
 from models.team import Team
 from sqlalchemy.orm import Session
+from utils.logger import logger
 
 """队伍表service层"""
 
@@ -36,7 +37,11 @@ class TeamService:
             'teamNum': '队伍配置',
             'createDate': '建队日期',
             'totalScore': '队伍积分',
-            'level': '队伍等级'
+            'level': '队伍等级',
+            'teamLogo': '队伍logo',
+            'captainPhone': '联系方式2',
+            'matchCount': '对局数量',
+            'winnerCount': '胜局数量'
         }
 
         # 处理数据，排除队伍名称并更换键名
@@ -47,6 +52,7 @@ class TeamService:
 
             # 对每个键值进行转换
             for key, value in team.items():
+                # print(key)
                 if key == 'teamName':  # 排除不需要的字段
                     continue
                 elif key == 'createDate':  # 格式化创建日期

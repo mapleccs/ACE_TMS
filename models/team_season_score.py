@@ -1,5 +1,6 @@
-from sqlalchemy import Column, Integer, ForeignKey,String
+from sqlalchemy import Column, Integer, ForeignKey, String
 from .base import Base
+
 
 class TeamSeasonScore(Base):
     __tablename__ = 'teamSeasonScore'

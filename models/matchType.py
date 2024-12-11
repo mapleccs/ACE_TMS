@@ -2,6 +2,7 @@ from sqlalchemy import Column, Integer, String
 from sqlalchemy.orm import relationship
 from .base import Base
 
+
 class MatchType(Base):
     __tablename__ = 'match_type'
 

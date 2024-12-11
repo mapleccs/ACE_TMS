@@ -3,6 +3,7 @@ from sqlalchemy.orm import relationship
 from .base import Base
 import datetime
 
+
 class TeamPlayer(Base):
     __tablename__ = 'teamPlayer'
 
