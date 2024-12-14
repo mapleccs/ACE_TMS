@@ -1,0 +1,61 @@
+/* ------------------- 左侧面板样式 -------------------- */
+#team_membership_widget {
+    background-color: #ffffff;      /* 淡蓝色背景 */
+    border: 2px solid #E3EBF3;      /* 边框颜色 */
+    border-radius: 5px;             /* 圆角 */
+    padding: 1px;                  /* 内边距 */
+}
+
+#team_icon {
+    border-radius: 10px;
+    border: 2px solid #87ceeb;  /* 队伍图标边框 */
+}
+
+/* 队伍名称和其他标签 */
+#short_label {
+    background-color: #E3EBF3;
+    border: 2px solid #8e8e8e;
+    border-radius: 5px;
+    color: #45457E;
+    font-size: 14px;
+    padding: 5px;
+    text-align: center;
+}
+
+#long_label {
+    background-color: #E3EBF3;
+    border: 2px solid #8e8e8e;
+    border-radius: 5px;
+    color: #45457E;
+    font-size: 14px;
+    padding: 5px;
+    text-align: center;
+}
+
+/* 长文本标签 */
+#long_text_label {
+    font-size: 16px;  /* 设置字体大小 */
+    color: #45457E;  /* 设置文本颜色 */
+}
+
+#team_honor_widget {
+    background-color: #ffffff;      /* 浅灰色背景 */
+    border: 2px solid #E3EBF3;      /* 边框颜色 */
+    border-radius: 5px;             /* 圆角 */
+    padding: 1px;                  /* 内边距 */
+}
+
+#match_records_widget {
+    background-color: #ffffff;      /* 白色背景 */
+    border: 2px solid #E3EBF3;      /* 边框颜色 */
+    border-radius: 5px;             /* 圆角 */
+    padding: 1px;                  /* 内边距 */
+}
+
+#team_detail_data_layout {
+    background-color: #E3EBF3;
+}
+
+#team_detail_data_splitter {
+    background-color: #E3EBF3;
+}

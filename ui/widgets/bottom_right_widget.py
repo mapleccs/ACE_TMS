@@ -2,6 +2,7 @@ from PyQt6.QtCore import Qt
 from PyQt6.QtWidgets import QWidget, QVBoxLayout, QLabel, QStackedWidget
 from ui.widgets.team_management import TeamManagementWidget
 from ui.widgets.team_detail_data_widget import TeamDetailDataWidget
+from ui.widgets.team_detail_entry_widget import TeamDetailEntryWidget
 from utils.logger import logger
 from utils.data_loader import TeamDetailDataLoaderThread
 
@@ -46,10 +47,14 @@ class BottomRightWidget(QWidget):
         self.team_detail_data_widget = TeamDetailDataWidget()
         self.team_detail_data_widget.setObjectName('team_detail_data_widget')  # 设置战队数据详情页面名称
 
+        self.team_detail_entry_widget = TeamDetailEntryWidget()
+        self.team_detail_entry_widget.setObjectName('team_detail_entry_widget')     # 设置战队登记详情页面名称
+
         # 添加页面到 QStackedWidget
         self.right_panel.addWidget(self.home_page_label)
         self.right_panel.addWidget(self.team_management_widget)
         self.right_panel.addWidget(self.team_detail_data_widget)
+        self.right_panel.addWidget(self.team_detail_entry_widget)
 
         # 设置布局
         layout = QVBoxLayout()
@@ -74,6 +79,11 @@ class BottomRightWidget(QWidget):
     def switch_to_team_detail_data(self):
         """切换到战队数据详情页面"""
         self.right_panel.setCurrentWidget(self.team_detail_data_widget)
+
+    @safe_slot
+    def switch_to_team_entry_widget(self):
+        """切换到战队登记详情页面"""
+        self.right_panel.setCurrentWidget(self.team_detail_entry_widget)
 
     @safe_slot
     def safe_show_team_detail_page(self):

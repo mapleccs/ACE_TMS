@@ -100,6 +100,8 @@ class MainWindow(QMainWindow):
         self.left_bottom_widget.team_details_management_button_clicked.connect(
             self.right_top_widget.show_team_detail_page)
 
+        self.left_bottom_widget.team_details_entry_button_clicked.connect(self.safe_show_team_entry_page)
+
         self.right_top_widget.search_teams_signal.connect(
             self.right_bottom_widget.team_management_widget.update_table_data)
         self.right_top_widget.sort_teams_signal.connect(self.right_bottom_widget.team_management_widget.sort_teams)
@@ -131,6 +133,11 @@ class MainWindow(QMainWindow):
     def safe_show_team_detail_page(self, *args, **kwargs):
         """切换到战队详细数据面板"""
         self.right_bottom_widget.right_panel.setCurrentWidget(self.right_bottom_widget.team_detail_data_widget)
+
+    @safe_slot
+    def safe_show_team_entry_page(self, *args, **kwargs):
+        """切换到战队登记界面"""
+        self.right_bottom_widget.right_panel.setCurrentWidget(self.right_bottom_widget.team_detail_entry_widget)
 
     @safe_slot
     def safe_on_modify_clicked(self, *args, **kwargs):

@@ -43,8 +43,7 @@ class BottomLeftWidget(QWidget):
 
         # 可选按钮（勾选状态）
         self.team_details_entry_button = self.create_checkable_button("战队资料录入", icon_path=":/ICON/空心圆点.png")
-        self.team_details_management_button = self.create_checkable_button("战队资料管理",
-                                                                           icon_path=":/ICON/空心圆点.png")
+        self.team_details_management_button = self.create_checkable_button("战队资料管理", icon_path=":/ICON/空心圆点.png")
 
         self.match_button = self.create_button("对局资料", icon_path=":/ICON/信号格.png", object_name="left_button")
 
@@ -87,8 +86,8 @@ class BottomLeftWidget(QWidget):
 
         # 连接按钮点击事件到自定义信号
         self.team_button.clicked.connect(self.emit_team_button_clicked)
-        self.team_details_management_button.clicked.connect(self.emit_team_details_management_button_clicked)
         self.team_details_entry_button.clicked.connect(self.emit_team_details_entry_button_clicked)
+        self.team_details_management_button.clicked.connect(self.emit_team_details_management_button_clicked)
 
     def create_button(self, text, icon_path=None, object_name=None):
         """创建普通按钮的辅助方法。"""
