@@ -26,22 +26,26 @@ class TeamDetailEntryWidget(QWidget):
 
         # 队伍名称
         self.team_name_edit = QLineEdit()
+        self.team_name_edit.setObjectName("team_name_edit")
         form_layout.addRow(QLabel("队伍名称:"), self.team_name_edit)
 
         # 队伍简称
         self.team_abbreviation_edit = QLineEdit()
+        self.team_abbreviation_edit.setObjectName("team_abbreviation_edit")
         form_layout.addRow(QLabel("队伍简称:"), self.team_abbreviation_edit)
 
         # 队伍Logo
         logo_layout = QHBoxLayout()
         self.logo_label = QLabel()
         self.logo_label.setFixedSize(100, 100)
+        self.logo_label.setObjectName("logo_label")
         self.logo_label.setStyleSheet("border: 1px solid black;")
         self.logo_label.setAlignment(Qt.AlignmentFlag.AlignCenter)
         self.logo_path = None  # 存储Logo的路径
         logo_layout.addWidget(self.logo_label)
 
         self.select_logo_button = QPushButton("选择Logo")
+        self.select_logo_button.setObjectName("select_logo_button")
         self.select_logo_button.clicked.connect(self.select_logo)
         logo_layout.addWidget(self.select_logo_button)
 
@@ -50,7 +54,9 @@ class TeamDetailEntryWidget(QWidget):
         # 队长信息
         captain_layout = QHBoxLayout()
         self.captain_id_edit = QLineEdit()
+        self.captain_id_edit.setObjectName("captain_id_edit")
         self.captain_qq_edit = QLineEdit()
+        self.captain_qq_edit.setObjectName("captain_qq_edit")
         captain_form = QFormLayout()
         captain_form.addRow(QLabel("队长ID:"), self.captain_id_edit)
         captain_form.addRow(QLabel("队长QQ:"), self.captain_qq_edit)
@@ -59,10 +65,12 @@ class TeamDetailEntryWidget(QWidget):
 
         # 联系方式1
         self.contact1_edit = QLineEdit()
+        self.contact1_edit.setObjectName("contact1_edit")
         form_layout.addRow(QLabel("联系方式1:"), self.contact1_edit)
 
         # 联系方式2
         self.contact2_edit = QLineEdit()
+        self.contact2_edit.setObjectName("contact2_edit")
         form_layout.addRow(QLabel("联系方式2:"), self.contact2_edit)
 
         # 队员信息
@@ -71,8 +79,10 @@ class TeamDetailEntryWidget(QWidget):
         member_header_layout.addWidget(QLabel("队员信息:"))
 
         self.add_member_button = QPushButton("添加队员")
+        self.add_member_button.setObjectName("add_member_button")
         self.add_member_button.clicked.connect(self.add_member)
         self.remove_member_button = QPushButton("移除选中队员")
+        self.remove_member_button.setObjectName("remove_member_button")
         self.remove_member_button.clicked.connect(self.remove_selected_member)
         member_header_layout.addWidget(self.add_member_button)
         member_header_layout.addWidget(self.remove_member_button)
@@ -80,6 +90,7 @@ class TeamDetailEntryWidget(QWidget):
         member_layout.addLayout(member_header_layout)
 
         self.members_table = QTableWidget(0, 6)
+        self.members_table.setObjectName("members_table")
         self.members_table.setHorizontalHeaderLabels([
             "比赛昵称", "常用位置", "游戏ID", "个人积分", "QQ号", "队内职务"
         ])
@@ -91,12 +102,14 @@ class TeamDetailEntryWidget(QWidget):
 
         # 成立日期
         self.create_date_edit = QDateEdit()
+        self.create_date_edit.setObjectName("create_date_edit")
         self.create_date_edit.setCalendarPopup(True)
         self.create_date_edit.setDate(QDate.currentDate())
         form_layout.addRow(QLabel("成立日期:"), self.create_date_edit)
 
         # 队伍积分
         self.team_points_spin = QSpinBox()
+        self.team_points_spin.setObjectName("team_points_spin")
         self.team_points_spin.setRange(0, 1000000)
         form_layout.addRow(QLabel("队伍积分:"), self.team_points_spin)
 
@@ -105,6 +118,7 @@ class TeamDetailEntryWidget(QWidget):
 
         # 保存按钮
         save_button = QPushButton("保存")
+        save_button.setObjectName("save_button")
         save_button.clicked.connect(self.save_details)
         main_layout.addWidget(save_button, alignment=Qt.AlignmentFlag.AlignRight)
 

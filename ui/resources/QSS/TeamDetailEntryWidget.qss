@@ -1,61 +1,121 @@
-/* ------------------- 左侧面板样式 -------------------- */
-#team_membership_widget {
-    background-color: #ffffff;      /* 淡蓝色背景 */
-    border: 2px solid #E3EBF3;      /* 边框颜色 */
-    border-radius: 5px;             /* 圆角 */
-    padding: 1px;                  /* 内边距 */
+/* ------------------- 队伍详情界面样式 -------------------- */
+/* 队伍名称输入框 */
+#team_name_edit {
+    font-size: 14px;
+    padding: 6px 10px;
+    border: 2px solid #E3EBF3;  /* 边框颜色与背景相符 */
+    border-radius: 5px;
+    background-color: white;
+    color: #45457E;  /* 深蓝色文本 */
 }
 
-#team_icon {
+/* 队伍简称输入框 */
+#team_abbreviation_edit {
+    font-size: 14px;
+    padding: 6px 10px;
+    border: 2px solid #E3EBF3;
+    border-radius: 5px;
+    background-color: white;
+    color: #45457E;
+}
+
+/* 队伍Logo区域 */
+#logo_label {
     border-radius: 10px;
-    border: 2px solid #87ceeb;  /* 队伍图标边框 */
+    border: 2px solid #87CEEB;  /* 队伍图标边框 */
+    background-color: #f4f4f4;
+    min-width: 100px;
+    min-height: 100px;
 }
 
-/* 队伍名称和其他标签 */
-#short_label {
+/* 选择Logo按钮 */
+#select_logo_button {
     background-color: #E3EBF3;
-    border: 2px solid #8e8e8e;
-    border-radius: 5px;
     color: #45457E;
-    font-size: 14px;
-    padding: 5px;
-    text-align: center;
-}
-
-#long_label {
-    background-color: #E3EBF3;
-    border: 2px solid #8e8e8e;
+    border: 2px solid #87CEEB;  /* 图标边框颜色 */
     border-radius: 5px;
-    color: #45457E;
+    padding: 6px 12px;
     font-size: 14px;
+}
+
+#select_logo_button:hover {
+    background-color: #D6E8F1;
+}
+
+/* 队长ID输入框 */
+#captain_id_edit,
+#captain_qq_edit {
+    font-size: 14px;
+    padding: 6px 10px;
+    border: 2px solid #E3EBF3;
+    border-radius: 5px;
+    background-color: white;
+    color: #45457E;
+}
+
+/* 联系方式输入框 */
+#contact1_edit,
+#contact2_edit {
+    font-size: 14px;
+    padding: 6px 10px;
+    border: 2px solid #E3EBF3;
+    border-radius: 5px;
+    background-color: white;
+    color: #45457E;
+}
+
+/* 队员表格 */
+#members_table {
+    border: 2px solid #E3EBF3;
+    border-radius: 5px;
+    background-color: white;
+    font-size: 12px;
+    color: #45457E;
+}
+
+/* 表格行 */
+#members_table::item {
     padding: 5px;
-    text-align: center;
 }
 
-/* 长文本标签 */
-#long_text_label {
-    font-size: 16px;  /* 设置字体大小 */
-    color: #45457E;  /* 设置文本颜色 */
+#members_table::item:hover {
+    background-color: #F0F8FF;
 }
 
-#team_honor_widget {
-    background-color: #ffffff;      /* 浅灰色背景 */
-    border: 2px solid #E3EBF3;      /* 边框颜色 */
-    border-radius: 5px;             /* 圆角 */
-    padding: 1px;                  /* 内边距 */
+#members_table::item:selected {
+    background-color: #ADD8E6;
 }
 
-#match_records_widget {
-    background-color: #ffffff;      /* 白色背景 */
-    border: 2px solid #E3EBF3;      /* 边框颜色 */
-    border-radius: 5px;             /* 圆角 */
-    padding: 1px;                  /* 内边距 */
+/* 队伍积分输入框 */
+#team_points_spin {
+    font-size: 14px;
+    padding: 6px 10px;
+    border: 2px solid #E3EBF3;
+    border-radius: 5px;
+    background-color: white;
+    color: #45457E;
 }
 
-#team_detail_data_layout {
-    background-color: #E3EBF3;
+/* 成立日期选择框 */
+#create_date_edit {
+    font-size: 14px;
+    padding: 6px 10px;
+    border: 2px solid #E3EBF3;
+    border-radius: 5px;
+    background-color: white;
+    color: #45457E;
 }
 
-#team_detail_data_splitter {
-    background-color: #E3EBF3;
+/* 保存按钮 */
+#save_button {
+    background-color: #87CEEB;  /* 浅蓝色 */
+    color: white;
+    padding: 10px 20px;
+    border: 2px solid #E3EBF3;
+    border-radius: 5px;
+    font-size: 16px;
+}
+
+#save_button:hover {
+    background-color: #66C2FF;
 }
